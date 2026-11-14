@@ -134,6 +134,11 @@
   @media (min-width: 1024px) { #get-it .frame { min-height: min(640px, calc(100svh - 200px)); display: grid; align-items: center; } }
   @media (max-width: 1023px) { main > #get-it { height: auto !important; min-height: 100svh; } main > #get-it > .wrap { height: auto !important; } main > #get-it > .wrap > .fill { flex: none !important; }
     #get-it .frame { height: auto !important; padding: 16px; } #get-it .frame .stage, #get-it .frame .at-rise { position: static !important; transform: none !important; width: auto !important; height: auto !important; inset: auto !important; } }
+  /* download buttons: an arrow before the words; the top bar keeps it from 640 wide up */
+  .dl-ico { margin-right: 8px; flex: none; }
+  .nav__actions { display: flex; gap: 10px; align-items: center; }
+  @media (max-width: 899px) { .nav__dl { display: none; } }
+  .hero__more { margin: 14px 0 0; font-size: 15px; }
   /* the download card: the logo on its own navy, as on the phone's home screen */
   .get-card { background: var(--p-inv-bg); color: var(--p-inv-ink); border-radius: var(--r-lg, 20px); padding: clamp(24px, 4vw, 44px);
     display: grid; grid-template-columns: auto 1fr; gap: 20px 24px; align-items: center; }
@@ -165,6 +170,7 @@
       <div class="nav__item"><a class="nav__link" href="#workshop">Workshop</a></div>
     </nav>
     <div class="nav__actions">
+      <a class="btn btn--secondary nav__dl" href="https://transportinsight-igimjrsjbq-nw.a.run.app/download/windows"><svg class="dl-ico" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0-3.2-3.2M8 10l3.2-3.2M3 13h10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Download</a>
       <a class="btn btn--primary" href="https://transportinsight-igimjrsjbq-nw.a.run.app/">Start a free trial</a>
     </div>
     <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
@@ -180,7 +186,8 @@
         <a class="pill" href="#questions"><span>14,109 jobs imported in 45 seconds</span><span class="muted">Read how</span></a>
         <h1 id="hero-h">Transport software for UK hauliers</h1>
         <p class="hero__lead">Price a load, plan the day on one board, send each run to the driver's phone and invoice the work. Every job shows its profit before you take it.</p>
-        <div class="btn-row"><a class="btn btn--primary" href="https://transportinsight-igimjrsjbq-nw.a.run.app/">Start a free trial</a><a class="btn btn--secondary" href="https://transportinsight-igimjrsjbq-nw.a.run.app/#/sample">Look around a sample company</a></div>
+        <div class="btn-row"><a class="btn btn--primary" href="https://transportinsight-igimjrsjbq-nw.a.run.app/">Start a free trial</a><a class="btn btn--secondary" href="https://transportinsight-igimjrsjbq-nw.a.run.app/download/windows"><svg class="dl-ico" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0-3.2-3.2M8 10l3.2-3.2M3 13h10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Download for Windows</a></div>
+        <p class="hero__more"><a class="link" href="https://transportinsight-igimjrsjbq-nw.a.run.app/#/sample">Or look around a sample company first</a></p>
       </div>
       <div class="hero__window" data-fx="painterly-landscape" data-fx-seed="7" role="img" aria-label="The Planning board putting a load on a vehicle and working out the day's profit">
         <div class="ly-piece d-win d-win--dark" aria-hidden="true">
@@ -393,7 +400,7 @@
             <h2 id="get-it-h">The apps: browser, Windows and phone</h2>
             <p class="t-lead">The office signs in from any browser or the Windows app. Drivers and mechanics add it to their phone's home screen, and it keeps working with no signal.</p>
           </div>
-          <div class="btn-row"><a class="btn btn--primary" href="https://transportinsight-igimjrsjbq-nw.a.run.app/download/windows">Download for Windows</a><a class="btn btn--secondary" href="https://transportinsight-igimjrsjbq-nw.a.run.app/#/sample">Look around a sample company</a></div>
+          <div class="btn-row"><a class="btn btn--primary" href="https://transportinsight-igimjrsjbq-nw.a.run.app/download/windows"><svg class="dl-ico" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0-3.2-3.2M8 10l3.2-3.2M3 13h10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Download for Windows</a><a class="btn btn--secondary" href="https://transportinsight-igimjrsjbq-nw.a.run.app/#/sample">Look around a sample company</a></div>
           <a class="link" href="https://transportinsight-igimjrsjbq-nw.a.run.app/guide/">Read the how-to guide</a>
         </div>
         <div class="frame frame--split frame--lit span-6 start-7" data-fx="grain-gradient" data-fx-seed="63">
