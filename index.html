@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-type="software" data-radius="soft" data-ground="sand" data-buttons="tonal" data-motion>
+<html lang="en" data-type="software" data-radius="soft" data-ground="sky" data-buttons="tonal" data-motion>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -27,10 +27,10 @@
 <link rel="stylesheet" href="assets/icons/icon.css">
 <style>
 :root {
-  --p-bg: #ffffff; --p-surface: #f7f8fa; --p-ink: #151a22; --p-muted: #465062;
-  --p-accent: #c2410c; --p-accent-ink: #ffffff; --p-action: #c2410c; --p-action-ink: #ffffff;
-  --p-inv-bg: #151a22; --p-inv-surface: #22272f; --p-inv-ink: #ffffff; --p-inv-muted: #9d9fa3;
-  --p-inv-accent: #c2410c; --p-inv-accent-ink: #ffffff; --p-inv-action: #c2410c; --p-inv-action-ink: #ffffff;
+  --p-bg: #ffffff; --p-surface: #f4f7fb; --p-ink: #0b1622; --p-muted: #44536a;
+  --p-accent: #1565d8; --p-accent-ink: #ffffff; --p-action: #1565d8; --p-action-ink: #ffffff;
+  --p-inv-bg: #06131f; --p-inv-surface: #12202e; --p-inv-ink: #ffffff; --p-inv-muted: #9aa6b4;
+  --p-inv-accent: #2bb3f0; --p-inv-accent-ink: #06131f; --p-inv-action: #2bb3f0; --p-inv-action-ink: #06131f;
   --font-display: "Instrument Sans", system-ui, sans-serif;
   --font-text: "Instrument Sans", system-ui, sans-serif;
   --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
@@ -130,12 +130,27 @@
   /* prices: what's included, as plain lines */
   .plan-list { list-style: none; margin: 0; padding: 0; display: grid; }
   .plan-list li { padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 16px; }
+  /* the apps section: its picture takes the screen's height beside the words; on a phone the section grows to hold it */
+  @media (min-width: 1024px) { #get-it .frame { min-height: min(640px, calc(100svh - 200px)); display: grid; align-items: center; } }
+  @media (max-width: 1023px) { main > #get-it { height: auto !important; min-height: 100svh; } main > #get-it > .wrap { height: auto !important; } main > #get-it > .wrap > .fill { flex: none !important; }
+    #get-it .frame { height: auto !important; padding: 16px; } #get-it .frame .stage, #get-it .frame .at-rise { position: static !important; transform: none !important; width: auto !important; height: auto !important; inset: auto !important; } }
+  /* the download card: the logo on its own navy, as on the phone's home screen */
+  .get-card { background: var(--p-inv-bg); color: var(--p-inv-ink); border-radius: var(--r-lg, 20px); padding: clamp(24px, 4vw, 44px);
+    display: grid; grid-template-columns: auto 1fr; gap: 20px 24px; align-items: center; }
+  .get-card img { border-radius: 50%; box-shadow: 0 0 48px rgba(43, 179, 240, .35); }
+  .get-card__name { font-size: 22px; font-weight: 600; margin: 0 0 4px; }
+  .get-card__meta { color: var(--p-inv-muted); margin: 0; font-size: 15px; }
+  .get-card__list { grid-column: 1 / -1; list-style: none; margin: 8px 0 0; padding: 0; display: grid; }
+  .get-card__list li { display: grid; grid-template-columns: 130px 1fr; gap: 12px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.12); font-size: 15px; }
+  .get-card__list b { color: var(--p-inv-accent); font-weight: 600; }
+  .get-card__list span { color: var(--p-inv-muted); }
+  @media (max-width: 639px) { .get-card { grid-template-columns: 1fr; } .get-card img { width: 72px; height: 72px; } .get-card__list li { grid-template-columns: 1fr; gap: 2px; } }
 </style>
 </head>
 <body>
 <!-- type: software (site-kind software): transport management software for UK hauliers
      deal: hero centred, nav nav-centre, close close-type, footer footer-statement, rhythm space, buttons tonal,
-     mark: the client's own logo (wordmark beside it), palette: the client's own (TransportInsight's app colours via start.mjs brand), type instrument
+     mark: the client's own logo (wordmark beside it), palette: the client's own (the new TI logo's navy / blue / cyan via start.mjs brand, 2026-11-14), type instrument
      moments: marquee-row, the last row of #prices (a row of real trade words) -->
 
 <header class="nav nav--centre">
@@ -165,7 +180,7 @@
         <a class="pill" href="#questions"><span>14,109 jobs imported in 45 seconds</span><span class="muted">Read how</span></a>
         <h1 id="hero-h">Transport software for UK hauliers</h1>
         <p class="hero__lead">Price a load, plan the day on one board, send each run to the driver's phone and invoice the work. Every job shows its profit before you take it.</p>
-        <div class="btn-row"><a class="btn btn--primary" href="https://transportinsight-igimjrsjbq-nw.a.run.app/">Start a free trial</a><a class="btn btn--secondary" href="#prices">See the prices</a></div>
+        <div class="btn-row"><a class="btn btn--primary" href="https://transportinsight-igimjrsjbq-nw.a.run.app/">Start a free trial</a><a class="btn btn--secondary" href="https://transportinsight-igimjrsjbq-nw.a.run.app/#/sample">Look around a sample company</a></div>
       </div>
       <div class="hero__window" data-fx="painterly-landscape" data-fx-seed="7" role="img" aria-label="The Planning board putting a load on a vehicle and working out the day's profit">
         <div class="ly-piece d-win d-win--dark" aria-hidden="true">
@@ -262,7 +277,7 @@
         </div>
         <div class="grid">
           <article class="card card--row card--open span-6">
-            <h3>Each run on the driver's phone</h3>
+            <h3>The driver app's run screen</h3>
             <p>The driver taps arrived, loaded and delivered. The office sees each step a few seconds later.</p>
             <div class="panel" data-fx="grain-gradient" data-fx-seed="21">
               <div class="stage stage--fade-b"><div class="at-rise fit" style="--fit-max:380px;--ax:32px;--ay:calc(100% - 180px);--ay-sm:calc(100% - 180px)" data-ui-loop>
@@ -277,7 +292,7 @@
             </div>
           </article>
           <article class="card card--row card--open span-6">
-            <h3>Walk-around checks</h3>
+            <h3>The walk-around checklist</h3>
             <p>Every item is answered before the vehicle leaves, and a fault becomes a defect report for the workshop.</p>
             <div class="panel" data-fx="grain-gradient" data-fx-seed="34">
               <div class="stage stage--fade-b"><div class="at-rise fit" style="--fit-max:340px;--ax:max(24px, 50% - 170px);--ay:40px;--ay-sm:24px">
@@ -300,14 +315,14 @@
       </div>
       <div class="grid">
           <article class="card card--row card--open span-6">
-            <h3>Defects in Red, Amber or Green</h3>
+            <h3>Defect colours: Red, Amber, Green</h3>
             <p>Red, Amber or Green, following DVSA's categorisation of defects. A Red defect keeps the vehicle off the board.</p>
             <div class="panel" data-fx="grain-gradient" data-fx-seed="47">
               <div class="dg" data-diagram='{"layout":"lanes","alt":"A fault reported from the phone goes through the fault colour guide and comes out Red, Amber or Green.","input":{"label":"Phone","icon":"ui:smartphone","sub":"DE24 MOH"},"core":{"label":"Guide","icon":"ui:list-checks"},"lanes":[{"label":"Red","icon":"ui:x","done":true,"sub":"Off the road"},{"label":"Amber","icon":"ui:bell-ring","done":true,"sub":"Fix soon"},{"label":"Green","icon":"ui:check","done":true,"sub":"Cosmetic"}]}'></div>
             </div>
           </article>
           <article class="card card--row card--open span-6">
-            <h3>Delivery tickets and photos</h3>
+            <h3>The delivery ticket store</h3>
             <p>Delivery tickets, photos and signatures are stored with the job and come with it onto the invoice's backing sheet.</p>
             <div class="panel" data-fx="grain-gradient" data-fx-seed="58">
               <div class="stage stage--fade-br"><div class="at-corner wide" style="--w:680px;--ax:24px;--ay:40px">
@@ -370,6 +385,37 @@
   </section>
 
 
+  <section class="section" id="get-it" aria-labelledby="get-it-h">
+    <div class="wrap">
+      <div class="grid grid--top fill">
+        <div class="span-5 stack-6">
+          <div class="stack-4">
+            <h2 id="get-it-h">The apps: browser, Windows and phone</h2>
+            <p class="t-lead">The office signs in from any browser or the Windows app. Drivers and mechanics add it to their phone's home screen, and it keeps working with no signal.</p>
+          </div>
+          <div class="btn-row"><a class="btn btn--primary" href="https://transportinsight-igimjrsjbq-nw.a.run.app/download/windows">Download for Windows</a><a class="btn btn--secondary" href="https://transportinsight-igimjrsjbq-nw.a.run.app/#/sample">Look around a sample company</a></div>
+          <a class="link" href="https://transportinsight-igimjrsjbq-nw.a.run.app/guide/">Read the how-to guide</a>
+        </div>
+        <div class="frame frame--split frame--lit span-6 start-7" data-fx="grain-gradient" data-fx-seed="63">
+          <div class="stage"><div class="at-rise fit" style="--fit-max:440px;--ax:max(20px, 50% - 220px);--ay:max(32px, 50% - 215px);--ay-sm:20px">
+          <div class="ui ui-panel get-card">
+            <img src="logo-mark.png" alt="" width="96" height="96">
+            <div>
+              <p class="get-card__name">TransportInsight for Windows</p>
+              <p class="get-card__meta">Windows 10 and 11 · 16 MB download · signs in to your company like the browser</p>
+            </div>
+            <ul class="get-card__list">
+              <li><b>Browser</b><span>Sign in at the app's address from any PC or Mac</span></li>
+              <li><b>Windows app</b><span>Unzip, then open TransportInsight.exe</span></li>
+              <li><b>Phone</b><span>Open the link, then Add to Home Screen</span></li>
+            </ul>
+          </div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="questions" aria-labelledby="questions-h">
     <div class="wrap">
       <div class="grid grid--top">
@@ -380,9 +426,10 @@
         </div>
         <div class="faq span-6 start-7">
           <div class="faq__item"><h3>Can I bring my old jobs in?</h3><p>Yes. Import a CSV from Mandata or a spreadsheet: 14,109 real jobs took about 45 seconds, and an import can be undone.</p></div>
+          <div class="faq__item"><h3>Can I look round first?</h3><p>Yes. Open the sample company from the sign-in screen: six months of a haulier's work on every page, with no sign-up.</p></div>
           <div class="faq__item"><h3>Does it export to Sage 50?</h3><p>Yes: invoices, credit notes and payments. Other accounts packages are not supported yet.</p></div>
-          <div class="faq__item"><h3>What phone does a driver need?</h3><p>A smartphone with a browser. The app keeps a driver's taps and photos when there's no signal and sends them when it's back.</p></div>
-          <div class="faq__item faq__item--wide"><h3>Does it suit a one-man band?</h3><p>Yes. Switch on one-man band and the office login is also the driver, with the phone screens inside the app.</p></div>
+          
+          <div class="faq__item"><h3>Does it suit a one-man band?</h3><p>Yes. Switch on one-man band and the office login is also the driver, with the phone screens inside the app.</p></div>
           <div class="faq__item"><h3>Can a planner see the company's money?</h3><p>Only if you tick it. Each login sees the sections you give it, and the change takes effect on their next click.</p></div>
         </div>
       </div>
@@ -446,7 +493,7 @@
     <div class="closing__cta close--type">
       <div class="section-head">
         <h2 id="close-h">Plan tomorrow on TransportInsight</h2>
-        <p class="t-small muted">Try it on your own vehicles and customers. Nothing to install: it runs in the browser and on drivers' phones.</p>
+        <p class="t-small muted">Try it on your own vehicles and customers, in the browser, the Windows app or on drivers' phones.</p>
       </div>
       <a class="btn btn--primary btn--xl btn--wide" href="https://transportinsight-igimjrsjbq-nw.a.run.app/">Start a free trial<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
     </div>
@@ -457,7 +504,7 @@
           <p class="footer__lede">Transport management software for UK haulage firms.</p>
         </div>
         <div class="span-2 footer__col"><h3>Product</h3><ul><li><a href="#planning">Planning</a></li><li><a href="#drivers">Drivers</a></li><li><a href="#workshop">Workshop</a></li></ul></div>
-        <div class="span-2 footer__col"><h3>Buying</h3><ul><li><a href="#prices">Prices</a></li><li><a href="#questions">Questions</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Buying</h3><ul><li><a href="#prices">Prices</a></li><li><a href="#get-it">Get the app</a></li><li><a href="#questions">Questions</a></li></ul></div>
         <div class="span-4 footer__col"><h3>Account</h3><ul><li><a href="https://transportinsight-igimjrsjbq-nw.a.run.app/">Sign in</a></li><li><a href="https://transportinsight-igimjrsjbq-nw.a.run.app/guide/">How-to guide</a></li><li><a href="https://transportinsight-igimjrsjbq-nw.a.run.app/download/windows">Download for Windows</a></li></ul></div>
       </div>
       <div class="footer__legal">
