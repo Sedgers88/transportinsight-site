@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en" data-type="software" data-radius="soft" data-ground="sand" data-buttons="tonal" data-motion>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TransportInsight: transport software for UK hauliers</title>
+<meta name="description" content="Plan the day on one board, send runs to drivers' phones, keep the fleet legal and invoice the work, with every job's profit shown before you take it.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TransportInsight: transport software for UK hauliers">
+<meta property="og:description" content="One system for a haulage office: planning, drivers' phones, workshop, compliance and invoicing.">
+<meta property="og:image" content="share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#ffffff">
+<!-- <link rel="canonical" href="https://[TransportInsight's domain, once bought]/"> -->
+<meta name="site-kind" content="software">
+<meta name="page-type" content="software">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<link rel="stylesheet" href="assets/ui/cards.css">
+<link rel="stylesheet" href="assets/motion/motion.css">
+<link rel="stylesheet" href="assets/backgrounds/backgrounds.css">
+<link rel="stylesheet" href="assets/layout/layout.css">
+<link rel="stylesheet" href="assets/icons/icon.css">
+<style>
+:root {
+  --p-bg: #ffffff; --p-surface: #f7f8fa; --p-ink: #151a22; --p-muted: #465062;
+  --p-accent: #c2410c; --p-accent-ink: #ffffff; --p-action: #c2410c; --p-action-ink: #ffffff;
+  --p-inv-bg: #151a22; --p-inv-surface: #22272f; --p-inv-ink: #ffffff; --p-inv-muted: #9d9fa3;
+  --p-inv-accent: #c2410c; --p-inv-accent-ink: #ffffff; --p-inv-action: #c2410c; --p-inv-action-ink: #ffffff;
+  --font-display: "Instrument Sans", system-ui, sans-serif;
+  --font-text: "Instrument Sans", system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --display-weight: 500;
+  --display-tracking: -0.028em;
+  --display-tracking-xl: -0.036em;
+  --display-stretch: 96%;
+  --ly-scale: 1.04;
+}
+</style>
+<link rel="stylesheet" href="assets/layout/demo.css">
+<link rel="stylesheet" href="assets/ui/base.css">
+<link rel="stylesheet" href="assets/ui/window/fragment.css">
+<link rel="stylesheet" href="assets/ui/notify/fragment.css">
+<link rel="stylesheet" href="assets/ui/checklist/fragment.css">
+<link rel="stylesheet" href="assets/ui/files/fragment.css">
+<link rel="stylesheet" href="assets/diagrams/diagram.css">
+<script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+<script src="assets/backgrounds/backgrounds.js"></script>
+<script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
+<link rel="modulepreload" href="assets/moments/moments.js">
+<link rel="modulepreload" href="assets/moments/lib.js">
+<link rel="modulepreload" href="assets/moments/marquee-row/moment.js">
+<style>
+  /* the logo: TransportInsight's own mark */
+  .nav__logo img { width: 28px; height: 28px; border-radius: 7px; }
+  /* hero window: the Planning board, a vehicle list beside the run being built */
+  .hero__window { background:
+    radial-gradient(120% 60% at 70% 118%, #6f7f3a 0 40%, transparent 41%),
+    radial-gradient(90% 50% at 10% 108%, #57703f 0 42%, transparent 43%),
+    radial-gradient(80% 40% at 60% 92%, #9fb2c4 0 40%, transparent 41%),
+    linear-gradient(#5f93cc, #a9c7e4 70%, #c8d6dd); }
+  .d-win--dark .d-win__body { grid-template-columns: 250px 1fr; min-height: 420px; }
+  .d-win--dark .d-win__bar b { color: #eceef0; font-weight: 500; } .d-win--dark .d-win__bar .sp { flex: 1; }
+  .hero__window .d-chat { padding: 14px 18px; gap: 8px; }
+  .hero__window .d-msg--me small { display: none; }
+  .hero__window .d-msg--bot { max-width: 86%; }
+  .hero__window .d-msg--bot small { display: inline; margin: 0 0 0 8px; white-space: nowrap; }
+  .fleet { border-right: 1px solid rgb(255 255 255 / .07); padding: 10px; display: grid; align-content: start; gap: 2px; }
+  .fleet .q { height: 34px; margin-bottom: 6px; border-radius: 9px; background: rgb(255 255 255 / .06); display: flex; align-items: center; padding: 0 10px; color: #7d8389; font-size: 13px; }
+  .fleet .t { display: grid; grid-template-columns: 1fr auto; gap: 1px 10px; padding: 9px 8px; border-radius: 9px; font-size: 13px; }
+  .fleet .t.is-on { background: rgb(255 255 255 / .07); }
+  .fleet .t b { font-family: var(--font-mono); font-weight: 500; color: #151a22; background: #f7d34a; border-radius: 4px; padding: 0 6px; justify-self: start; }
+  .fleet .t time { color: #7d8389; font-size: 13px; }
+  .fleet .t span { grid-column: 1 / -1; color: #8d9399; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .fleet .t span.red { color: #ff8a80; }
+  .convo { display: grid; min-width: 0; align-content: start; }
+  .d-msg--bot { background: #22262b; color: #e9ecee; }
+  .acts { display: flex; gap: 8px; } .acts span { height: 28px; padding: 0 10px; border-radius: 6px; display: inline-flex; align-items: center; font-size: 13px; font-weight: 500; background: rgb(255 255 255 / .08); color: #ffb48a; }
+  .acts span + span { background: rgb(255 255 255 / .08); color: #e9ecee; }
+  @media (max-width: 639px) { .hero__window .d-win__bar .sp ~ span { display: none; } .d-win--dark .d-win__body { grid-template-columns: 1fr; } .fleet { display: none; } .hero__window .d-chat { font-size: 13px; padding: 12px 14px; } .hero__window .d-msg--bot small, .hero__window .d-tool { display: none; } }
+
+  /* the app frame: unplanned loads beside one vehicle's run (sections-library app-frame) */
+  .app.ui { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); margin-top: var(--s-7); background: var(--u-bg); border: 1px solid var(--u-border); border-radius: var(--u-r); box-shadow: var(--u-shadow); }
+  .app > .app__pane { position: relative; min-width: 0; min-height: 0; overflow: hidden; }
+  .app > .app__pane + .app__pane { border-left: 1px solid var(--u-line); }
+  .app > .app__pane > .ui-panel { width: 100%; border: 0; border-radius: 0; box-shadow: none; }
+  .app > .app__pane::after { content: ""; position: absolute; inset: auto 0 0 0; height: 64px; background: linear-gradient(transparent, var(--u-bg)); pointer-events: none; }
+  @media (min-width: 1024px) and (max-width: 1279px) { .app.ui { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); } }
+  @media (max-width: 1023px) {
+    .app.ui { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
+    .app > .app__pane--list { max-height: 252px; }
+    .app > .app__pane--list::after { display: none; }
+    .app .ui-win__side { display: none; }
+    .app .ui-win__body { grid-template-columns: minmax(0, 1fr); }
+    .app > .app__pane + .app__pane { border-left: 0; border-top: 1px solid var(--u-line); }
+  }
+  @media (max-width: 639px) { .app.ui { grid-template-rows: minmax(0, 1fr); } .app > .app__pane--list { display: none; } .app > .app__pane + .app__pane { border-top: 0; } }
+  /* the open run, drawn in the kit's tokens */
+  .run { padding: 16px 20px; font: 400 14px/1.45 var(--font-text); color: var(--u-ink, #16181a); }
+  .run__head { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid var(--u-line); }
+  .run__reg { font-family: var(--font-mono); font-weight: 500; color: #151a22; border-left: 3px solid #f2c200; padding-left: 7px; }
+  .run__who { color: var(--u-muted, #5d6268); }
+  .run__chip { margin-left: auto; font-size: 13px; font-weight: 500; color: #17633a; }
+  .run__legs { list-style: none; margin: 0; padding: 4px 0 0; display: grid; }
+  .run__legs li { display: grid; grid-template-columns: 74px minmax(0, 1fr) auto; gap: 12px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid var(--u-line); }
+  .run__legs li.empty { color: var(--u-muted, #5d6268); font-size: 13px; padding: 7px 0; }
+  .run__legs time { font-family: var(--font-mono); font-size: 13px; color: var(--u-muted, #5d6268); }
+  .run__legs b { font-weight: 500; }
+  .run__legs .pc { font-family: var(--font-mono); font-size: 13px; color: var(--u-muted, #5d6268); }
+  .run__legs .gbp { font-variant-numeric: tabular-nums; font-weight: 500; }
+  .run__totals { display: flex; flex-wrap: wrap; gap: 8px 20px; padding-top: 14px; font-size: 13px; color: var(--u-muted, #5d6268); }
+  .run__totals b { color: var(--u-ink, #16181a); font-weight: 500; font-variant-numeric: tabular-nums; }
+
+  #drivers .panel { --p-h: 300px; }
+  #prices .frame--split { aspect-ratio: auto; height: 100%; min-height: 440px; }
+  @media (max-width: 1023px) { #prices .frame--split { height: auto; min-height: 0; aspect-ratio: 4 / 3; } }
+  @media (max-width: 639px) { .run__legs li:nth-child(n+5), .run__totals span:nth-child(n+4) { display: none; } }
+  @media (max-width: 639px) { #drivers .panel { --p-h: 120px; } #drivers .panel:has(.dg) { display: none; } #workshop .frame--split { aspect-ratio: 16 / 10; } }
+  /* a little more air in the open answers and a taller included-list frame on wide screens, so the gaps between sections match */
+  @media (max-width: 1279px) { .faq__item--wide { display: none; } }
+  @media (max-width: 359px) { #workshop { --hm: 2; } }
+  @media (min-width: 1280px) { .faq__item { padding-block: var(--s-5); } #prices .frame--split { min-height: 520px; } }
+  /* the workshop's window frame takes the screen the heading leaves; prices push the trade row to the foot */
+  #workshop .frame--split { aspect-ratio: auto; height: 100%; min-height: 420px; }
+  @media (max-width: 1023px) { #workshop .frame--split { height: auto; aspect-ratio: 5 / 4; min-height: 0; } }
+  /* prices: what's included, as plain lines */
+  .plan-list { list-style: none; margin: 0; padding: 0; display: grid; }
+  .plan-list li { padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 16px; }
+</style>
+</head>
+<body>
+<!-- type: software (site-kind software): transport management software for UK hauliers
+     deal: hero centred, nav nav-centre, close close-type, footer footer-statement, rhythm space, buttons tonal,
+     mark: the client's own logo (wordmark beside it), palette: the client's own (TransportInsight's app colours via start.mjs brand), type instrument
+     moments: marquee-row, the last row of #prices (a row of real trade words) -->
+
+<header class="nav nav--centre">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top">Skip to content</a>
+    <a class="nav__logo" href="#top"><img src="favicon.svg" alt="" width="28" height="28">TransportInsight</a>
+    <nav class="nav__links" aria-label="Main">
+      <div class="nav__item"><a class="nav__link" href="#planning">Planning</a></div>
+      <div class="nav__item"><a class="nav__link" href="#drivers">Drivers</a></div>
+      <div class="nav__item"><a class="nav__link" href="#prices">Prices</a></div>
+      <div class="nav__item"><a class="nav__link" href="#questions">Questions</a></div>
+      <div class="nav__item"><a class="nav__link" href="#workshop">Workshop</a></div>
+    </nav>
+    <div class="nav__actions">
+      <a class="btn btn--primary" href="https://transportinsight-igimjrsjbq-nw.a.run.app/">Start a free trial</a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero hero--centred" data-enter aria-labelledby="hero-h">
+    <div class="wrap"><div class="hero-text">
+      <div class="hero__c">
+        <a class="pill" href="#questions"><span>14,109 jobs imported in 45 seconds</span><span class="muted">Read how</span></a>
+        <h1 id="hero-h">Transport software for UK hauliers</h1>
+        <p class="hero__lead">Price a load, plan the day on one board, send each run to the driver's phone and invoice the work. Every job shows its profit before you take it.</p>
+        <div class="btn-row"><a class="btn btn--primary" href="https://transportinsight-igimjrsjbq-nw.a.run.app/">Start a free trial</a><a class="btn btn--secondary" href="#prices">See the prices</a></div>
+      </div>
+      <div class="hero__window" data-fx="painterly-landscape" data-fx-seed="7" role="img" aria-label="The Planning board putting a load on a vehicle and working out the day's profit">
+        <div class="ly-piece d-win d-win--dark" aria-hidden="true">
+          <div class="d-win__bar"><span class="d-win__dots"><i></i><i></i><i></i></span><span><b>Planning board</b> · Thursday 12 November</span><span class="sp"></span><span>8 runs · 21 loads</span></div>
+          <div class="d-win__body">
+            <div class="fleet">
+              <div class="q">Find a vehicle or a load</div>
+              <div class="t is-on"><b>DE24 MOH</b><time>3 loads</time><span>Danny Driver · back to Leyland</span></div>
+              <div class="t"><b>FA73 JWA</b><time>2 loads</time><span>Rachel Quayle · stays out</span></div>
+              <div class="t"><b>BU69 XFB</b><time>0 loads</time><span class="red">Off the road · Red defect</span></div>
+            </div>
+            <div class="convo">
+              <div class="d-chat" data-ly-steps="900">
+                <div class="d-msg d-msg--me">Northgate Aggregates · Buxton to Warrington · £300<small>dropped on DE24 MOH</small></div>
+                <div class="d-tool" data-step>Working out road miles, hours and the day's profit</div>
+                <div class="d-msg d-msg--bot" data-step>DE24 MOH now runs 3 loads: 41 empty miles, 9.6 hours, day profit £412.<small>Score 82 · good</small></div>
+                <div class="acts" data-step><span>Send to driver</span><span>Suggest order</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="section" id="planning" aria-labelledby="planning-h">
+    <div class="wrap">
+      <div class="grid">
+        <h2 class="span-5" id="planning-h">The Planning board</h2>
+        <div class="span-6 start-7 stack-4">
+          <p class="t-lead muted">Drag a load onto a vehicle and its empty miles, the driver's hours and the day's profit update as it lands. Optimise day plans the rest.</p>
+          <a class="link" href="#drivers">See what the driver gets</a>
+        </div>
+      </div>
+      <div class="ui app fill" role="img" aria-label="Unplanned loads beside DE24 MOH's run for the day, with its empty miles and day profit" data-ui-pause-host>
+        <div class="app__pane app__pane--list">
+          <div class="ui ui-panel ui-win" data-ui="window" data-open="Unplanned" data-work="Planning" data-done="On a run">
+            <div class="ui-win__bar">
+              <span class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="ui-win__crumb">Planning <i>/</i> <b>Unplanned</b></span>
+              <span class="ui-spacer"></span>
+              <span class="ui-win__search" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg><span class="ui-win__ph">Search</span><span class="ui-kbd">/</span></span>
+            </div>
+            <div class="ui-win__body">
+              <nav class="ui-win__side" aria-hidden="true">
+                <span class="ui-win__nav is-on">Unplanned<em>9</em></span>
+                <span class="ui-win__nav">Today<em>21</em></span>
+                <span class="ui-win__nav">Tomorrow<em>17</em></span>
+                <span class="ui-win__label">Views</span>
+                <span class="ui-win__nav">Compact</span>
+                <span class="ui-win__nav">Map</span>
+              </nav>
+              <div class="ui-win__main">
+                <div class="ui-win__cols" aria-hidden="true"><span>Customer</span><span>Load</span><span>Status</span><span>Collect</span></div>
+                <ul class="ui-win__rows">
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">NA</span><span class="ui-win__who">Northgate Aggregates</span><span class="ui-win__sub">Buxton to Warrington · £300</span><span class="ui-win__st" data-st>Unplanned</span><span class="ui-win__age">07:30</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="3">PW</span><span class="ui-win__who">Pennine Waste</span><span class="ui-win__sub">Bolton to Wigan · £300</span><span class="ui-win__st" data-st>Unplanned</span><span class="ui-win__age">08:00</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="4">RR</span><span class="ui-win__who">Red Rose Skip Hire</span><span class="ui-win__sub">Blackburn to Leyland · £240</span><span class="ui-win__st" data-st>Unplanned</span><span class="ui-win__age">08:15</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="2">TB</span><span class="ui-win__who">Trent Building Supplies</span><span class="ui-win__sub">Nottingham to Sheffield · £385</span><span class="ui-win__st" data-st>Unplanned</span><span class="ui-win__age">09:00</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="5">CP</span><span class="ui-win__who">Cheshire Plastics</span><span class="ui-win__sub">Widnes to Warrington · day hire</span><span class="ui-win__st" data-st>Unplanned</span><span class="ui-win__age">06:00</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">MD</span><span class="ui-win__who">Mancunian Demolition</span><span class="ui-win__sub">Trafford Park to Wigan · £300</span><span class="ui-win__st is-done" data-st>On a run</span><span class="ui-win__age">10:30</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="3">FC</span><span class="ui-win__who">Fylde Coast Recycling</span><span class="ui-win__sub">Blackpool to Preston · £210</span><span class="ui-win__st is-done" data-st>On a run</span><span class="ui-win__age">11:00</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="4">GW</span><span class="ui-win__who">Greenway Waste</span><span class="ui-win__sub">Lancaster to Leyland · £240</span><span class="ui-win__st is-done" data-st>On a run</span><span class="ui-win__age">12:15</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="2">DG</span><span class="ui-win__who">Derwent Glass</span><span class="ui-win__sub">Derby to Rotherham · £300</span><span class="ui-win__st is-done" data-st>On a run</span><span class="ui-win__age">13:00</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app__pane app__pane--open" data-ui-loop>
+          <div class="run">
+            <div class="run__head"><span class="run__reg">DE24 MOH</span><span class="run__who">Danny Driver · day run · trailer C005</span><span class="run__chip">Sent ✓</span></div>
+            <ol class="run__legs">
+              <li class="empty"><time>06:40</time><span>Leyland yard to Buxton</span><span>38 mi empty</span></li>
+              <li><time>07:30</time><span><b>Northgate Aggregates</b> <span class="pc">Buxton to Warrington</span></span><span class="gbp">£300</span></li>
+              <li class="empty"><time>10:05</time><span>Warrington to Trafford Park</span><span>3 mi empty</span></li>
+              <li><time>10:30</time><span><b>Mancunian Demolition</b> <span class="pc">Trafford Park to Wigan</span></span><span class="gbp">£300</span></li>
+              <li class="empty"><time>12:10</time><span>Wigan to Blackburn</span><span>0 mi empty, backload</span></li>
+              <li><time>12:40</time><span><b>Red Rose Skip Hire</b> <span class="pc">Blackburn to Leyland</span></span><span class="gbp">£240</span></li>
+              <li class="empty"><time>14:30</time><span>Leyland to the yard</span><span>0 mi empty</span></li>
+            </ol>
+            <div class="run__totals"><span>Empty <b>41 mi</b></span><span>Hours <b>9.6 h</b></span><span>Revenue <b>£840</b></span><span>Day profit <b>£412</b></span><span>Score <b>82 good</b></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section g2" id="drivers" aria-labelledby="drivers-h">
+    <div class="wrap">
+      <div class="group">
+        <div class="section-head">
+          <h2 id="drivers-h">The driver's phone. <span class="muted">Steps, checks and tickets from the cab.</span></h2>
+        </div>
+        <div class="grid">
+          <article class="card card--row card--open span-6">
+            <h3>Each run on the driver's phone</h3>
+            <p>The driver taps arrived, loaded and delivered. The office sees each step a few seconds later.</p>
+            <div class="panel" data-fx="grain-gradient" data-fx-seed="21">
+              <div class="stage stage--fade-b"><div class="at-rise fit" style="--fit-max:380px;--ax:32px;--ay:calc(100% - 180px);--ay-sm:calc(100% - 180px)" data-ui-loop>
+                <div class="ui ui-notify" data-ui="notify">
+                  <ul class="ui-notify__list" data-notify-list>
+                    <li class="ui-note"><span class="ui-avatar ui-note__av" data-tone="1">DD</span><span class="ui-note__text"><span class="ui-note__title">Danny Driver delivered<time>now</time></span><span class="ui-note__body">Warrington · ticket TKT 6601</span></span><span class="ui-btn ui-btn--sm ui-note__btn">Open</span></li>
+                    <li class="ui-note"><span class="ui-avatar ui-note__av" data-tone="1">DD</span><span class="ui-note__text"><span class="ui-note__title">Loaded at Northgate<time>2h</time></span><span class="ui-note__body">Buxton · 1 photo of the load</span></span></li>
+                    <li class="ui-note"><span class="ui-note__ico"><svg class="ui-icon" viewBox="0 0 16 16"><path d="m3.5 8.4 2.8 2.8 6.2-6.4"/></svg></span><span class="ui-note__text"><span class="ui-note__title">Walk-around check sent<time>4h</time></span><span class="ui-note__body">DE24 MOH · all OK</span></span></li>
+                  </ul>
+                </div>
+              </div></div>
+            </div>
+          </article>
+          <article class="card card--row card--open span-6">
+            <h3>Walk-around checks</h3>
+            <p>Every item is answered before the vehicle leaves, and a fault becomes a defect report for the workshop.</p>
+            <div class="panel" data-fx="grain-gradient" data-fx-seed="34">
+              <div class="stage stage--fade-b"><div class="at-rise fit" style="--fit-max:340px;--ax:max(24px, 50% - 170px);--ay:40px;--ay-sm:24px">
+                <div class="ui ui-panel ui-checks" data-ui="checklist">
+                  <div class="ui-checks__head"><div class="ui-title">DE24 MOH walk-around</div><span class="ui-spacer"></span><div class="ui-meta" data-checks-count>3 of 6</div></div>
+                  <div class="ui-checks__bar"><i data-checks-bar style="--k:0.5"></i></div>
+                  <ul class="ui-checks__list">
+                    <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Tyres and wheel nuts</span></li>
+                    <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Lights and indicators</span></li>
+                    <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Mirrors and glass</span></li>
+                    <li class="ui-check"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Brakes and air lines</span></li>
+                    <li class="ui-check"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Load security</span></li>
+                    <li class="ui-check"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Fuel and AdBlue</span></li>
+                  </ul>
+                </div>
+              </div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="grid">
+          <article class="card card--row card--open span-6">
+            <h3>Defects in Red, Amber or Green</h3>
+            <p>Red, Amber or Green, following DVSA's categorisation of defects. A Red defect keeps the vehicle off the board.</p>
+            <div class="panel" data-fx="grain-gradient" data-fx-seed="47">
+              <div class="dg" data-diagram='{"layout":"lanes","alt":"A fault reported from the phone goes through the fault colour guide and comes out Red, Amber or Green.","input":{"label":"Phone","icon":"ui:smartphone","sub":"DE24 MOH"},"core":{"label":"Guide","icon":"ui:list-checks"},"lanes":[{"label":"Red","icon":"ui:x","done":true,"sub":"Off the road"},{"label":"Amber","icon":"ui:bell-ring","done":true,"sub":"Fix soon"},{"label":"Green","icon":"ui:check","done":true,"sub":"Cosmetic"}]}'></div>
+            </div>
+          </article>
+          <article class="card card--row card--open span-6">
+            <h3>Delivery tickets and photos</h3>
+            <p>Delivery tickets, photos and signatures are stored with the job and come with it onto the invoice's backing sheet.</p>
+            <div class="panel" data-fx="grain-gradient" data-fx-seed="58">
+              <div class="stage stage--fade-br"><div class="at-corner wide" style="--w:680px;--ax:24px;--ay:40px">
+                <div class="ui ui-files" data-ui="files" data-reading="Saving {n} of {total}">
+                  <div class="ui-files__status"><span class="ui-dot"></span><span data-files-status>4 files kept</span></div>
+                  <ul class="ui-files__grid">
+                    <li class="ui-file is-done"><span class="ui-file__icon"><img data-icon="image" src="assets/icons/image.svg" alt=""></span><span class="ui-file__name">Ticket TKT 6601</span><span class="ui-file__kind">Photo</span><span class="ui-file__bar"><i></i></span><span class="ui-file__check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 8.2 2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
+                    <li class="ui-file is-done"><span class="ui-file__icon"><img data-icon="image" src="assets/icons/image.svg" alt=""></span><span class="ui-file__name">The load at Buxton</span><span class="ui-file__kind">Photo</span><span class="ui-file__bar"><i></i></span><span class="ui-file__check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 8.2 2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
+                    <li class="ui-file is-done"><span class="ui-file__icon"><img data-icon="pdf" src="assets/icons/pdf.svg" alt=""></span><span class="ui-file__name">Consignment note</span><span class="ui-file__kind">PDF</span><span class="ui-file__bar"><i></i></span><span class="ui-file__check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 8.2 2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
+                    <li class="ui-file is-done"><span class="ui-file__icon"><img data-icon="pdf" src="assets/icons/pdf.svg" alt=""></span><span class="ui-file__name">Backing sheet</span><span class="ui-file__kind">PDF</span><span class="ui-file__bar"><i></i></span><span class="ui-file__check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 8.2 2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
+                  </ul>
+                </div>
+              </div></div>
+            </div>
+          </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="prices" aria-labelledby="prices-h">
+    <div class="wrap">
+      <div class="grid grid--top">
+        <div class="span-5 stack-6">
+          <div class="stack-4">
+            <h2 id="prices-h">Prices</h2>
+            <p class="t-lead">One system for the whole office. Ask for the price for your fleet, or try it on your own work first.</p>
+          </div>
+          <!-- PRICES: Harley to give the launch prices (per vehicle / per month etc.); they replace "Price on request" -->
+          <article class="card card--plan">
+            <h3>TransportInsight</h3>
+            <p>For haulage firms from one vehicle to a full fleet with its own workshop</p>
+            <p class="t-stat">Price on request</p>
+            <a class="btn btn--secondary" href="mailto:sales@transportinsight.example?subject=Prices">Ask for a price</a>
+          </article>
+        </div>
+        <div class="frame frame--split frame--lit span-6 start-7">
+          <div class="stage stage--fade-b"><div class="at-rise fit" style="--fit-max:360px;--ax:max(24px, 50% - 180px);--ay:48px;--ay-sm:24px">
+            <div class="ui ui-panel ui-checks" data-ui="checklist">
+              <div class="ui-checks__head"><div class="ui-title">Included for every company</div><span class="ui-spacer"></span><div class="ui-meta" data-checks-count>6 of 6</div></div>
+              <div class="ui-checks__bar"><i data-checks-bar style="--k:1"></i></div>
+              <ul class="ui-checks__list">
+                <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Route Builder quotes and price lists</span></li>
+                <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Planning board and Optimise day</span></li>
+                <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Driver and mechanic phone apps</span></li>
+                <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Workshop, MOT plan and compliance</span></li>
+                <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Invoicing and the Sage 50 export</span></li>
+                <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Insights on every job's profit</span></li>
+              </ul>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div style="margin-top: var(--s-7)">
+        <p class="t-label">Made for the work hauliers do</p>
+        <div data-moment="marquee-row" data-moment-opts='{"speed": 36}'>
+          <ul class="mo-mq__track"><li>Tippers</li><li>Artics</li><li>Rigids</li><li>Curtainsiders</li><li>Walking floors</li><li>Skip loaders</li><li>Day hire</li><li>Aggregates</li><li>Waste and recycling</li><li>Pallets</li><li>Split loads</li><li>Nights out</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" id="questions" aria-labelledby="questions-h">
+    <div class="wrap">
+      <div class="grid grid--top">
+        <div class="span-5 stack-4">
+          <h2 id="questions-h">Questions</h2>
+          <p class="t-lead muted">What haulage offices ask before they move off a whiteboard and a spreadsheet.</p>
+          <a class="link" href="mailto:hello@transportinsight.example">Email a question</a>
+        </div>
+        <div class="faq span-6 start-7">
+          <div class="faq__item"><h3>Can I bring my old jobs in?</h3><p>Yes. Import a CSV from Mandata or a spreadsheet: 14,109 real jobs took about 45 seconds, and an import can be undone.</p></div>
+          <div class="faq__item"><h3>Does it export to Sage 50?</h3><p>Yes: invoices, credit notes and payments. Other accounts packages are not supported yet.</p></div>
+          <div class="faq__item"><h3>What phone does a driver need?</h3><p>A smartphone with a browser. The app keeps a driver's taps and photos when there's no signal and sends them when it's back.</p></div>
+          <div class="faq__item faq__item--wide"><h3>Does it suit a one-man band?</h3><p>Yes. Switch on one-man band and the office login is also the driver, with the phone screens inside the app.</p></div>
+          <div class="faq__item"><h3>Can a planner see the company's money?</h3><p>Only if you tick it. Each login sees the sections you give it, and the change takes effect on their next click.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="workshop" aria-labelledby="workshop-h">
+    <div class="wrap">
+      <div class="grid grid--top fill">
+        <div class="span-5 stack-6">
+          <h2 id="workshop-h">The workshop and the MOT plan</h2>
+          <p class="t-lead">A defect becomes a job card. Mechanics clock on from their phone, parts come off the stock list, and the vehicle goes back on the board when the repair is done.</p>
+          <ul class="plan-list">
+            <li>MOT dates checked against DVSA</li>
+            <li>Tachograph downloads and working time</li>
+            <li>Outside garages' prices compared</li>
+          </ul>
+          <a class="link" href="#prices">See the prices</a>
+        </div>
+        <div class="frame frame--split frame--lit span-6 start-7">
+          <div class="stage stage--fade-br"><div class="at-corner to-edge" style="--ax:56px;--ay:56px">
+            <div class="ui ui-panel ui-win" data-ui="window" data-open="Waiting" data-work="Clocked on" data-done="Done">
+              <div class="ui-win__bar">
+                <span class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="ui-win__crumb">Workshop <i>/</i> <b>Job cards</b></span>
+                <span class="ui-spacer"></span>
+                <span class="ui-win__search" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg><span class="ui-win__ph">Registration</span><span class="ui-kbd">/</span></span>
+              </div>
+              <div class="ui-win__body">
+                <nav class="ui-win__side" aria-hidden="true">
+                  <span class="ui-win__nav is-on">Open<em>7</em></span>
+                  <span class="ui-win__nav">Bookings<em>4</em></span>
+                  <span class="ui-win__nav">Defects<em>3</em></span>
+                  <span class="ui-win__nav">Parts</span>
+                </nav>
+                <div class="ui-win__main">
+                  <div class="ui-win__cols" aria-hidden="true"><span>Vehicle</span><span>Job</span><span>Status</span><span>Card</span></div>
+                  <ul class="ui-win__rows">
+                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">KW</span><span class="ui-win__who">BU69 XFB</span><span class="ui-win__sub">Indicator not flashing · Red</span><span class="ui-win__st" data-st>Waiting</span><span class="ui-win__age">JC-0352</span></li>
+                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="3">KW</span><span class="ui-win__who">DS71 XJG</span><span class="ui-win__sub">Tyre bulge, outer nearside</span><span class="ui-win__st" data-st>Waiting</span><span class="ui-win__age">JC-0353</span></li>
+                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="4">KW</span><span class="ui-win__who">DE24 MOH</span><span class="ui-win__sub">6-weekly safety inspection</span><span class="ui-win__st" data-st>Waiting</span><span class="ui-win__age">JC-0354</span></li>
+                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="2">KW</span><span class="ui-win__who">NU71 UMT</span><span class="ui-win__sub">Oil and filter service</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0349</span></li>
+                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="5">KW</span><span class="ui-win__who">T004</span><span class="ui-win__sub">Wheel nut indicators</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0347</span></li>
+                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">KW</span><span class="ui-win__who">FA73 JWA</span><span class="ui-win__sub">MOT booked Friday</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0344</span></li>
+                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="3">KW</span><span class="ui-win__who">GS69 NUY</span><span class="ui-win__sub">MOT test day prep</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0341</span></li>
+                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="4">KW</span><span class="ui-win__who">C009</span><span class="ui-win__sub">Curtain strap replaced</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0339</span></li>
+                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="5">KW</span><span class="ui-win__who">WE73 ERY</span><span class="ui-win__sub">Tacho calibration</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0336</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer closing footer--statement" id="contact" aria-labelledby="close-h">
+  <div class="wrap">
+    <div class="closing__cta close--type">
+      <div class="section-head">
+        <h2 id="close-h">Plan tomorrow on TransportInsight</h2>
+        <p class="t-small muted">Try it on your own vehicles and customers. Nothing to install: it runs in the browser and on drivers' phones.</p>
+      </div>
+      <a class="btn btn--primary btn--xl btn--wide" href="https://transportinsight-igimjrsjbq-nw.a.run.app/">Start a free trial<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+    </div>
+    <div class="closing__links">
+      <div class="grid">
+        <div class="span-4 stack-4">
+          <a class="nav__logo" href="#top"><img src="favicon.svg" alt="" width="28" height="28">TransportInsight</a>
+          <p class="footer__lede">Transport management software for UK haulage firms.</p>
+        </div>
+        <div class="span-2 footer__col"><h3>Product</h3><ul><li><a href="#planning">Planning</a></li><li><a href="#drivers">Drivers</a></li><li><a href="#workshop">Workshop</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Buying</h3><ul><li><a href="#prices">Prices</a></li><li><a href="#questions">Questions</a></li></ul></div>
+        <div class="span-4 footer__col"><h3>Account</h3><ul><li><a href="https://transportinsight-igimjrsjbq-nw.a.run.app/">Sign in</a></li></ul></div>
+      </div>
+      <div class="footer__legal">
+        <span>&copy; 2026 TransportInsight</span>
+        <div class="socials"></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<nav class="actionbar" aria-label="Quick actions">
+  <a class="btn btn--primary" href="https://transportinsight-igimjrsjbq-nw.a.run.app/">Start a free trial</a>
+</nav>
+
+<script type="module" src="assets/system.js"></script>
+<script type="module" src="assets/motion/motion.js"></script>
+<script type="module" src="assets/layout/layout.js"></script>
+<script type="module" src="assets/diagrams/mount.js"></script>
+</body>
+</html>
