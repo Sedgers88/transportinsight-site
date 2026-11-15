@@ -130,6 +130,8 @@
   /* prices: what's included, as plain lines */
   .plan-list { list-style: none; margin: 0; padding: 0; display: grid; }
   .plan-list li { padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 16px; }
+  /* the drivers section is two screens on a wide window; below 1024 its cards stack shorter than two screens - it ends with them */
+  @media (max-width: 1023px) { main > #drivers.g2 { height: auto !important; min-height: 0 !important; } main > #drivers.g2 > .wrap { height: auto !important; grid-template-rows: auto auto !important; } #drivers .card .panel { flex: none !important; height: 260px !important; min-height: 260px; } }
   /* the apps section: its picture takes the screen's height beside the words; on a phone the section grows to hold it */
   @media (min-width: 1024px) { #get-it .frame { min-height: min(640px, calc(100svh - 200px)); display: grid; align-items: center; } }
   @media (max-width: 1023px) { main > #get-it { height: auto !important; min-height: 100svh; } main > #get-it > .wrap { height: auto !important; } main > #get-it > .wrap > .fill { flex: none !important; }
