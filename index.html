@@ -13,7 +13,8 @@
 <link rel="icon" href="favicon-64.png" type="image/png" sizes="64x64">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#ffffff">
-<!-- <link rel="canonical" href="https://[TransportInsight's domain, once bought]/"> -->
+<link rel="canonical" href="https://transportinsight.co.uk/">
+<meta property="og:url" content="https://transportinsight.co.uk/">
 <meta name="site-kind" content="software">
 <meta name="page-type" content="software">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -141,6 +142,10 @@
   .nav__actions { display: flex; gap: 10px; align-items: center; }
   @media (max-width: 1199px) { .nav__dl { display: none; } }
   .hero__more { margin: 14px 0 0; font-size: 15px; }
+  /* the founding price, large; the "included" list reads as ticked, never struck through */
+  .card--plan > .price-big { font-family: var(--font-display); font-size: clamp(40px, 4.2vw, 58px); font-weight: 600; letter-spacing: -0.03em; line-height: 1; margin: 4px 0; }
+  .card--plan > .price-big span { font-family: var(--font-text); font-size: 16px; font-weight: 400; letter-spacing: 0; color: var(--muted, #44536a); }
+  #prices .ui-check__label::after { display: none; }  #prices .ui-check.is-done .ui-check__label { color: inherit; }
   /* the download card: the logo on its own navy, as on the phone's home screen */
   .get-card { background: var(--p-inv-bg); color: var(--p-inv-ink); border-radius: var(--r-lg, 20px); padding: clamp(24px, 4vw, 44px);
     display: grid; grid-template-columns: auto 1fr; gap: 20px 24px; align-items: center; }
@@ -408,14 +413,15 @@
         <div class="span-5 stack-6">
           <div class="stack-4">
             <h2 id="prices-h">Prices</h2>
-            <p class="t-lead">One system for the whole office. Ask for the price for your fleet, or try it on your own work first.</p>
+            <p class="t-lead">One price per vehicle covers the whole office, every driver and every mechanic. Five vehicles on the founding offer is £62.50 a month.</p>
           </div>
-          <!-- PRICES: Harley to give the launch prices (per vehicle / per month etc.); they replace "Price on request" -->
+          <!-- PRICES (Harley 2026-11-15): founding offer for the first 5 firms, then £25 per vehicle a month -->
           <article class="card card--plan">
-            <h3>TransportInsight</h3>
-            <p>For haulage firms from one vehicle to a full fleet with its own workshop</p>
-            <p class="t-stat">Price on request</p>
-            <a class="btn btn--secondary" href="mailto:sales@transportinsight.example?subject=Prices">Ask for a price</a>
+            <h3>Founding customers</h3>
+            <p>The first five haulage firms, in return for telling us what works and what doesn't</p>
+            <p class="price-big">£12.50 <span>per vehicle a month</span></p>
+            <p class="t-small muted">Kept for as long as you stay. After the first five: £25 per vehicle a month. Unlimited office, driver and mechanic logins, first month free, no contract.</p>
+            <a class="btn btn--secondary" href="mailto:sales@transportinsight.co.uk?subject=A%20founding%20place">Ask for a founding place</a>
           </article>
         </div>
         <div class="frame frame--split frame--lit span-6 start-7">
@@ -482,7 +488,7 @@
         <div class="span-5 stack-4">
           <h2 id="questions-h">Questions</h2>
           <p class="t-lead muted">What haulage offices ask before they move off a whiteboard and a spreadsheet.</p>
-          <a class="link" href="mailto:hello@transportinsight.example">Email a question</a>
+          <a class="link" href="mailto:hello@transportinsight.co.uk">Email a question</a>
         </div>
         <div class="faq span-6 start-7">
           <div class="faq__item"><h3>Can I bring my old jobs in?</h3><p>Yes. Import a CSV from Mandata or a spreadsheet: 14,109 real jobs took about 45 seconds, and an import can be undone.</p></div>
