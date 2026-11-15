@@ -139,7 +139,7 @@
   /* download buttons: an arrow before the words; the top bar keeps it from 640 wide up */
   .dl-ico { margin-right: 8px; flex: none; }
   .nav__actions { display: flex; gap: 10px; align-items: center; }
-  @media (max-width: 899px) { .nav__dl { display: none; } }
+  @media (max-width: 1199px) { .nav__dl { display: none; } }
   .hero__more { margin: 14px 0 0; font-size: 15px; }
   /* the download card: the logo on its own navy, as on the phone's home screen */
   .get-card { background: var(--p-inv-bg); color: var(--p-inv-ink); border-radius: var(--r-lg, 20px); padding: clamp(24px, 4vw, 44px);
@@ -167,9 +167,9 @@
     <nav class="nav__links" aria-label="Main">
       <div class="nav__item"><a class="nav__link" href="#planning">Planning</a></div>
       <div class="nav__item"><a class="nav__link" href="#drivers">Drivers</a></div>
+      <div class="nav__item"><a class="nav__link" href="#workshop">Workshop</a></div>
       <div class="nav__item"><a class="nav__link" href="#prices">Prices</a></div>
       <div class="nav__item"><a class="nav__link" href="#questions">Questions</a></div>
-      <div class="nav__item"><a class="nav__link" href="#workshop">Workshop</a></div>
     </nav>
     <div class="nav__actions">
       <a class="btn btn--secondary nav__dl" href="https://transportinsight-igimjrsjbq-nw.a.run.app/download/windows"><svg class="dl-ico" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0-3.2-3.2M8 10l3.2-3.2M3 13h10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Download</a>
@@ -351,6 +351,57 @@
     </div>
   </section>
 
+  <section class="section" id="workshop" aria-labelledby="workshop-h">
+    <div class="wrap">
+      <div class="grid grid--top fill">
+        <div class="span-5 stack-6">
+          <h2 id="workshop-h">The workshop and the MOT plan</h2>
+          <p class="t-lead">A defect becomes a job card. Mechanics clock on from their phone, parts come off the stock list, and the vehicle goes back on the board when the repair is done.</p>
+          <ul class="plan-list">
+            <li>MOT dates checked against DVSA</li>
+            <li>Tachograph downloads and working time</li>
+            <li>Outside garages' prices compared</li>
+          </ul>
+          <a class="link" href="#prices">See the prices</a>
+        </div>
+        <div class="frame frame--split frame--lit span-6 start-7">
+          <div class="stage stage--fade-br"><div class="at-corner to-edge" style="--ax:56px;--ay:56px">
+            <div class="ui ui-panel ui-win" data-ui="window" data-open="Waiting" data-work="Clocked on" data-done="Done">
+              <div class="ui-win__bar">
+                <span class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="ui-win__crumb">Workshop <i>/</i> <b>Job cards</b></span>
+                <span class="ui-spacer"></span>
+                <span class="ui-win__search" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg><span class="ui-win__ph">Registration</span><span class="ui-kbd">/</span></span>
+              </div>
+              <div class="ui-win__body">
+                <nav class="ui-win__side" aria-hidden="true">
+                  <span class="ui-win__nav is-on">Open<em>7</em></span>
+                  <span class="ui-win__nav">Bookings<em>4</em></span>
+                  <span class="ui-win__nav">Defects<em>3</em></span>
+                  <span class="ui-win__nav">Parts</span>
+                </nav>
+                <div class="ui-win__main">
+                  <div class="ui-win__cols" aria-hidden="true"><span>Vehicle</span><span>Job</span><span>Status</span><span>Card</span></div>
+                  <ul class="ui-win__rows">
+                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">KW</span><span class="ui-win__who">BU69 XFB</span><span class="ui-win__sub">Indicator not flashing · Red</span><span class="ui-win__st" data-st>Waiting</span><span class="ui-win__age">JC-0352</span></li>
+                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="3">KW</span><span class="ui-win__who">DS71 XJG</span><span class="ui-win__sub">Tyre bulge, outer nearside</span><span class="ui-win__st" data-st>Waiting</span><span class="ui-win__age">JC-0353</span></li>
+                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="4">KW</span><span class="ui-win__who">DE24 MOH</span><span class="ui-win__sub">6-weekly safety inspection</span><span class="ui-win__st" data-st>Waiting</span><span class="ui-win__age">JC-0354</span></li>
+                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="2">KW</span><span class="ui-win__who">NU71 UMT</span><span class="ui-win__sub">Oil and filter service</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0349</span></li>
+                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="5">KW</span><span class="ui-win__who">T004</span><span class="ui-win__sub">Wheel nut indicators</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0347</span></li>
+                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">KW</span><span class="ui-win__who">FA73 JWA</span><span class="ui-win__sub">MOT booked Friday</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0344</span></li>
+                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="3">KW</span><span class="ui-win__who">GS69 NUY</span><span class="ui-win__sub">MOT test day prep</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0341</span></li>
+                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="4">KW</span><span class="ui-win__who">C009</span><span class="ui-win__sub">Curtain strap replaced</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0339</span></li>
+                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="5">KW</span><span class="ui-win__who">WE73 ERY</span><span class="ui-win__sub">Tacho calibration</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0336</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="prices" aria-labelledby="prices-h">
     <div class="wrap">
       <div class="grid grid--top">
@@ -445,56 +496,6 @@
     </div>
   </section>
 
-  <section class="section" id="workshop" aria-labelledby="workshop-h">
-    <div class="wrap">
-      <div class="grid grid--top fill">
-        <div class="span-5 stack-6">
-          <h2 id="workshop-h">The workshop and the MOT plan</h2>
-          <p class="t-lead">A defect becomes a job card. Mechanics clock on from their phone, parts come off the stock list, and the vehicle goes back on the board when the repair is done.</p>
-          <ul class="plan-list">
-            <li>MOT dates checked against DVSA</li>
-            <li>Tachograph downloads and working time</li>
-            <li>Outside garages' prices compared</li>
-          </ul>
-          <a class="link" href="#prices">See the prices</a>
-        </div>
-        <div class="frame frame--split frame--lit span-6 start-7">
-          <div class="stage stage--fade-br"><div class="at-corner to-edge" style="--ax:56px;--ay:56px">
-            <div class="ui ui-panel ui-win" data-ui="window" data-open="Waiting" data-work="Clocked on" data-done="Done">
-              <div class="ui-win__bar">
-                <span class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-                <span class="ui-win__crumb">Workshop <i>/</i> <b>Job cards</b></span>
-                <span class="ui-spacer"></span>
-                <span class="ui-win__search" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg><span class="ui-win__ph">Registration</span><span class="ui-kbd">/</span></span>
-              </div>
-              <div class="ui-win__body">
-                <nav class="ui-win__side" aria-hidden="true">
-                  <span class="ui-win__nav is-on">Open<em>7</em></span>
-                  <span class="ui-win__nav">Bookings<em>4</em></span>
-                  <span class="ui-win__nav">Defects<em>3</em></span>
-                  <span class="ui-win__nav">Parts</span>
-                </nav>
-                <div class="ui-win__main">
-                  <div class="ui-win__cols" aria-hidden="true"><span>Vehicle</span><span>Job</span><span>Status</span><span>Card</span></div>
-                  <ul class="ui-win__rows">
-                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">KW</span><span class="ui-win__who">BU69 XFB</span><span class="ui-win__sub">Indicator not flashing · Red</span><span class="ui-win__st" data-st>Waiting</span><span class="ui-win__age">JC-0352</span></li>
-                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="3">KW</span><span class="ui-win__who">DS71 XJG</span><span class="ui-win__sub">Tyre bulge, outer nearside</span><span class="ui-win__st" data-st>Waiting</span><span class="ui-win__age">JC-0353</span></li>
-                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="4">KW</span><span class="ui-win__who">DE24 MOH</span><span class="ui-win__sub">6-weekly safety inspection</span><span class="ui-win__st" data-st>Waiting</span><span class="ui-win__age">JC-0354</span></li>
-                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="2">KW</span><span class="ui-win__who">NU71 UMT</span><span class="ui-win__sub">Oil and filter service</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0349</span></li>
-                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="5">KW</span><span class="ui-win__who">T004</span><span class="ui-win__sub">Wheel nut indicators</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0347</span></li>
-                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">KW</span><span class="ui-win__who">FA73 JWA</span><span class="ui-win__sub">MOT booked Friday</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0344</span></li>
-                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="3">KW</span><span class="ui-win__who">GS69 NUY</span><span class="ui-win__sub">MOT test day prep</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0341</span></li>
-                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="4">KW</span><span class="ui-win__who">C009</span><span class="ui-win__sub">Curtain strap replaced</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0339</span></li>
-                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="5">KW</span><span class="ui-win__who">WE73 ERY</span><span class="ui-win__sub">Tacho calibration</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0336</span></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div></div>
-        </div>
-      </div>
-    </div>
-  </section>
 </main>
 
 <footer class="footer closing footer--statement" id="contact" aria-labelledby="close-h">
