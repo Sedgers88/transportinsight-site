@@ -1,543 +1,507 @@
 <!doctype html>
-<html lang="en" data-type="software" data-radius="soft" data-ground="sky" data-buttons="tonal" data-motion>
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>TransportInsight: transport software for UK hauliers</title>
-<meta name="description" content="Plan the day on one board, send runs to drivers' phones, keep the fleet legal and invoice the work, with every job's profit shown before you take it.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="TransportInsight: transport software for UK hauliers">
-<meta property="og:description" content="One system for a haulage office: planning, drivers' phones, workshop, compliance and invoicing.">
-<meta property="og:image" content="share.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="favicon-64.png" type="image/png" sizes="64x64">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="theme-color" content="#ffffff">
+<meta name="description" content="The whole haulage office in one system: planning, drivers' phones, compliance and the MOT plan, your own workshop, invoicing and plain-English Insights on where you make and lose money.">
 <link rel="canonical" href="https://transportinsight.co.uk/">
 <meta property="og:url" content="https://transportinsight.co.uk/">
-<meta name="site-kind" content="software">
-<meta name="page-type" content="software">
+<meta property="og:title" content="TransportInsight: the whole haulage office in one system">
+<meta property="og:description" content="Planning, drivers' phones, compliance, the workshop, invoicing and Insights for UK hauliers. Founding offer £12.50 per vehicle a month.">
+<meta property="og:image" content="https://transportinsight.co.uk/share.jpg">
+<meta name="theme-color" content="#071420">
+<link rel="icon" href="favicon-64.png" type="image/png" sizes="64x64">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/system.css">
-<link rel="stylesheet" href="assets/ui/cards.css">
-<link rel="stylesheet" href="assets/motion/motion.css">
-<link rel="stylesheet" href="assets/backgrounds/backgrounds.css">
-<link rel="stylesheet" href="assets/layout/layout.css">
-<link rel="stylesheet" href="assets/icons/icon.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@85..100,400..700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="preload" as="image" href="shots-web/board-compact.webp">
 <style>
+/* Layout: a dark navy hero with the real Planning board in a browser and the driver's phone over it; then alternating
+   light sections, each led by a real screenshot; Insights on its own dark band with the data-to-findings funnel.
+   Colours from the TI logo: navy, blue, cyan, a touch of the yellow "i". */
 :root {
-  --p-bg: #ffffff; --p-surface: #f4f7fb; --p-ink: #0b1622; --p-muted: #44536a;
-  --p-accent: #1565d8; --p-accent-ink: #ffffff; --p-action: #1565d8; --p-action-ink: #ffffff;
-  --p-inv-bg: #06131f; --p-inv-surface: #12202e; --p-inv-ink: #ffffff; --p-inv-muted: #9aa6b4;
-  --p-inv-accent: #2bb3f0; --p-inv-accent-ink: #06131f; --p-inv-action: #2bb3f0; --p-inv-action-ink: #06131f;
-  --font-display: "Instrument Sans", system-ui, sans-serif;
-  --font-text: "Instrument Sans", system-ui, sans-serif;
-  --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-  --display-weight: 500;
-  --display-tracking: -0.028em;
-  --display-tracking-xl: -0.036em;
-  --display-stretch: 96%;
-  --ly-scale: 1.04;
+  --navy: #071420; --navy-2: #0d2033; --navy-3: #16314a;
+  --ink: #0b1622; --muted: #4a5a70; --line: #dde4ee; --bg: #f5f8fc; --white: #ffffff;
+  --blue: #1565d8; --blue-ink: #0f4fae; --cyan: #2bb3f0; --yellow: #f2b705; --good: #15824f; --red: #c62f24;
+  --on-dark: #eef4fa; --on-dark-muted: #9fb2c6;
+  --font: "Instrument Sans", "Segoe UI", system-ui, sans-serif; --mono: "JetBrains Mono", Consolas, monospace;
+  --r: 16px; --r-lg: 22px; --shadow: 0 30px 80px -30px rgba(7, 20, 32, .45), 0 12px 30px -18px rgba(7, 20, 32, .35);
+  --wrap: 1200px;
 }
-</style>
-<link rel="stylesheet" href="assets/layout/demo.css">
-<link rel="stylesheet" href="assets/ui/base.css">
-<link rel="stylesheet" href="assets/ui/window/fragment.css">
-<link rel="stylesheet" href="assets/ui/notify/fragment.css">
-<link rel="stylesheet" href="assets/ui/checklist/fragment.css">
-<link rel="stylesheet" href="assets/ui/files/fragment.css">
-<link rel="stylesheet" href="assets/diagrams/diagram.css">
-<script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
-<script src="assets/backgrounds/backgrounds.js"></script>
-<script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
-<link rel="modulepreload" href="assets/moments/moments.js">
-<link rel="modulepreload" href="assets/moments/lib.js">
-<link rel="modulepreload" href="assets/moments/marquee-row/moment.js">
-<style>
-  /* the logo: TransportInsight's own mark */
-  .nav__logo img { width: 32px; height: 32px; border-radius: 50%; }
-  /* hero window: the Planning board, a vehicle list beside the run being built */
-  .hero__window { background:
-    radial-gradient(120% 60% at 70% 118%, #6f7f3a 0 40%, transparent 41%),
-    radial-gradient(90% 50% at 10% 108%, #57703f 0 42%, transparent 43%),
-    radial-gradient(80% 40% at 60% 92%, #9fb2c4 0 40%, transparent 41%),
-    linear-gradient(#5f93cc, #a9c7e4 70%, #c8d6dd); }
-  .d-win--dark .d-win__body { grid-template-columns: 250px 1fr; min-height: 420px; }
-  .d-win--dark .d-win__bar b { color: #eceef0; font-weight: 500; } .d-win--dark .d-win__bar .sp { flex: 1; }
-  .hero__window .d-chat { padding: 14px 18px; gap: 8px; }
-  .hero__window .d-msg--me small { display: none; }
-  .hero__window .d-msg--bot { max-width: 86%; }
-  .hero__window .d-msg--bot small { display: inline; margin: 0 0 0 8px; white-space: nowrap; }
-  .fleet { border-right: 1px solid rgb(255 255 255 / .07); padding: 10px; display: grid; align-content: start; gap: 2px; }
-  .fleet .q { height: 34px; margin-bottom: 6px; border-radius: 9px; background: rgb(255 255 255 / .06); display: flex; align-items: center; padding: 0 10px; color: #7d8389; font-size: 13px; }
-  .fleet .t { display: grid; grid-template-columns: 1fr auto; gap: 1px 10px; padding: 9px 8px; border-radius: 9px; font-size: 13px; }
-  .fleet .t.is-on { background: rgb(255 255 255 / .07); }
-  .fleet .t b { font-family: var(--font-mono); font-weight: 500; color: #151a22; background: #f7d34a; border-radius: 4px; padding: 0 6px; justify-self: start; }
-  .fleet .t time { color: #7d8389; font-size: 13px; }
-  .fleet .t span { grid-column: 1 / -1; color: #8d9399; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .fleet .t span.red { color: #ff8a80; }
-  .convo { display: grid; min-width: 0; align-content: start; }
-  .d-msg--bot { background: #22262b; color: #e9ecee; }
-  .acts { display: flex; gap: 8px; } .acts span { height: 28px; padding: 0 10px; border-radius: 6px; display: inline-flex; align-items: center; font-size: 13px; font-weight: 500; background: rgb(255 255 255 / .08); color: #ffb48a; }
-  .acts span + span { background: rgb(255 255 255 / .08); color: #e9ecee; }
-  @media (max-width: 639px) { .hero__window .d-win__bar .sp ~ span { display: none; } .d-win--dark .d-win__body { grid-template-columns: 1fr; } .fleet { display: none; } .hero__window .d-chat { font-size: 13px; padding: 12px 14px; } .hero__window .d-msg--bot small, .hero__window .d-tool { display: none; } }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--blue); }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { line-height: 1.1; letter-spacing: -0.025em; text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(32px, 4.2vw, 52px); font-weight: 650; }
+h3 { font-size: 21px; font-weight: 650; letter-spacing: -0.01em; }
+p { margin: 0; }
+.eyebrow { font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--blue); }
+.lead { font-size: clamp(18px, 1.6vw, 21px); color: var(--muted); max-width: 60ch; }
+.btn { display: inline-flex; align-items: center; gap: 8px; font: inherit; font-size: 16px; font-weight: 650; text-decoration: none; padding: 13px 22px; border-radius: 12px;
+  border: 1px solid transparent; transition: transform .15s ease, background-color .15s ease, box-shadow .15s ease; white-space: nowrap; }
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+.btn--primary { background: var(--blue); color: #fff; box-shadow: 0 10px 24px -12px rgba(21, 101, 216, .8); }
+.btn--primary:hover { background: var(--blue-ink); }
+.btn--ghost { background: rgba(255, 255, 255, .08); color: var(--on-dark); border-color: rgba(255, 255, 255, .22); }
+.btn--ghost:hover { background: rgba(255, 255, 255, .14); }
+.btn--light { background: var(--white); color: var(--ink); border-color: var(--line); }
+.btn:focus-visible, a:focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; }
+.btn svg { flex: none; }
 
-  /* the app frame: unplanned loads beside one vehicle's run (sections-library app-frame) */
-  .app.ui { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); margin-top: var(--s-7); background: var(--u-bg); border: 1px solid var(--u-border); border-radius: var(--u-r); box-shadow: var(--u-shadow); }
-  .app > .app__pane { position: relative; min-width: 0; min-height: 0; overflow: hidden; }
-  .app > .app__pane + .app__pane { border-left: 1px solid var(--u-line); }
-  .app > .app__pane > .ui-panel { width: 100%; border: 0; border-radius: 0; box-shadow: none; }
-  .app > .app__pane::after { content: ""; position: absolute; inset: auto 0 0 0; height: 64px; background: linear-gradient(transparent, var(--u-bg)); pointer-events: none; }
-  @media (min-width: 1024px) and (max-width: 1279px) { .app.ui { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); } }
-  @media (max-width: 1023px) {
-    .app.ui { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
-    .app > .app__pane--list { max-height: 252px; }
-    .app > .app__pane--list::after { display: none; }
-    .app .ui-win__side { display: none; }
-    .app .ui-win__body { grid-template-columns: minmax(0, 1fr); }
-    .app > .app__pane + .app__pane { border-left: 0; border-top: 1px solid var(--u-line); }
-  }
-  @media (max-width: 639px) { .app.ui { grid-template-rows: minmax(0, 1fr); } .app > .app__pane--list { display: none; } .app > .app__pane + .app__pane { border-top: 0; } }
-  /* the open run, drawn in the kit's tokens */
-  .run { padding: 16px 20px; font: 400 14px/1.45 var(--font-text); color: var(--u-ink, #16181a); }
-  .run__head { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid var(--u-line); }
-  .run__reg { font-family: var(--font-mono); font-weight: 500; color: #151a22; border-left: 3px solid #f2c200; padding-left: 7px; }
-  .run__who { color: var(--u-muted, #5d6268); }
-  .run__chip { margin-left: auto; font-size: 13px; font-weight: 500; color: #17633a; }
-  .run__legs { list-style: none; margin: 0; padding: 4px 0 0; display: grid; }
-  .run__legs li { display: grid; grid-template-columns: 74px minmax(0, 1fr) auto; gap: 12px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid var(--u-line); }
-  .run__legs li.empty { color: var(--u-muted, #5d6268); font-size: 13px; padding: 7px 0; }
-  .run__legs time { font-family: var(--font-mono); font-size: 13px; color: var(--u-muted, #5d6268); }
-  .run__legs b { font-weight: 500; }
-  .run__legs .pc { font-family: var(--font-mono); font-size: 13px; color: var(--u-muted, #5d6268); }
-  .run__legs .gbp { font-variant-numeric: tabular-nums; font-weight: 500; }
-  .run__totals { display: flex; flex-wrap: wrap; gap: 8px 20px; padding-top: 14px; font-size: 13px; color: var(--u-muted, #5d6268); }
-  .run__totals b { color: var(--u-ink, #16181a); font-weight: 500; font-variant-numeric: tabular-nums; }
+/* nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: rgba(7, 20, 32, .86); backdrop-filter: saturate(140%) blur(12px); border-bottom: 1px solid rgba(255, 255, 255, .08); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--navy); }
+.nav .wrap { display: flex; align-items: center; gap: 28px; height: 68px; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--on-dark); text-decoration: none; font-weight: 700; font-size: 18px; letter-spacing: -0.01em; }
+.brand img { width: 34px; height: 34px; border-radius: 50%; }
+.nav ul { display: flex; gap: 24px; list-style: none; margin: 0 0 0 auto; padding: 0; }
+.nav ul a { color: var(--on-dark-muted); text-decoration: none; font-size: 15px; font-weight: 550; }
+.nav ul a:hover { color: var(--on-dark); }
+.nav .btn { padding: 9px 16px; font-size: 15px; }
+.nav .dl { display: none; }
+@media (min-width: 1180px) { .nav .dl { display: inline-flex; } }
+@media (max-width: 960px) { .nav ul { display: none; } .nav .btn--primary { margin-left: auto; } }
 
-  #drivers .panel { --p-h: 300px; }
-  #prices .frame--split { aspect-ratio: auto; height: 100%; min-height: 440px; }
-  @media (max-width: 1023px) { #prices .frame--split { height: auto; min-height: 0; aspect-ratio: 4 / 3; } }
-  @media (max-width: 639px) { .run__legs li:nth-child(n+5), .run__totals span:nth-child(n+4) { display: none; } }
-  @media (max-width: 639px) { #drivers .panel { --p-h: 120px; } #drivers .panel:has(.dg) { display: none; } #workshop .frame--split { aspect-ratio: 16 / 10; } }
-  /* a little more air in the open answers and a taller included-list frame on wide screens, so the gaps between sections match */
-  @media (max-width: 1279px) { .faq__item--wide { display: none; } }
-  @media (max-width: 359px) { #workshop { --hm: 2; } }
-  @media (min-width: 1280px) { .faq__item { padding-block: var(--s-5); } #prices .frame--split { min-height: 520px; } }
-  /* the workshop's window frame takes the screen the heading leaves; prices push the trade row to the foot */
-  #workshop .frame--split { aspect-ratio: auto; height: 100%; min-height: 420px; }
-  @media (max-width: 1023px) { #workshop .frame--split { height: auto; aspect-ratio: 5 / 4; min-height: 0; } }
-  /* prices: what's included, as plain lines */
-  .plan-list { list-style: none; margin: 0; padding: 0; display: grid; }
-  .plan-list li { padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 16px; }
-  /* the drivers section is two screens on a wide window; below 1024 its cards stack shorter than two screens - it ends with them */
-  @media (max-width: 1023px) { main > #drivers.g2 { height: auto !important; min-height: 0 !important; } main > #drivers.g2 > .wrap { height: auto !important; grid-template-rows: auto auto !important; } #drivers .card .panel { flex: none !important; height: 260px !important; min-height: 260px; } }
-  /* the apps section: its picture takes the screen's height beside the words; on a phone the section grows to hold it */
-  @media (min-width: 1024px) { #get-it .frame { min-height: min(640px, calc(100svh - 200px)); display: grid; align-items: center; } }
-  @media (max-width: 1023px) { main > #get-it { height: auto !important; min-height: 100svh; } main > #get-it > .wrap { height: auto !important; } main > #get-it > .wrap > .fill { flex: none !important; }
-    #get-it .frame { height: auto !important; padding: 16px; } #get-it .frame .stage, #get-it .frame .at-rise { position: static !important; transform: none !important; width: auto !important; height: auto !important; inset: auto !important; } }
-  /* download buttons: an arrow before the words; the top bar keeps it from 640 wide up */
-  .dl-ico { margin-right: 8px; flex: none; }
-  .nav__actions { display: flex; gap: 10px; align-items: center; }
-  @media (max-width: 1199px) { .nav__dl { display: none; } }
-  .hero__more { margin: 14px 0 0; font-size: 15px; }
-  /* the founding price, large; the "included" list reads as ticked, never struck through */
-  .card--plan > .price-big { font-family: var(--font-display); font-size: clamp(40px, 4.2vw, 58px); font-weight: 600; letter-spacing: -0.03em; line-height: 1; margin: 4px 0; }
-  .card--plan > .price-big span { font-family: var(--font-text); font-size: 16px; font-weight: 400; letter-spacing: 0; color: var(--muted, #44536a); }
-  #prices .ui-check__label::after { display: none; }  #prices .ui-check.is-done .ui-check__label { color: inherit; }
-  /* the download card: the logo on its own navy, as on the phone's home screen */
-  .get-card { background: var(--p-inv-bg); color: var(--p-inv-ink); border-radius: var(--r-lg, 20px); padding: clamp(24px, 4vw, 44px);
-    display: grid; grid-template-columns: auto 1fr; gap: 20px 24px; align-items: center; }
-  .get-card img { border-radius: 50%; box-shadow: 0 0 48px rgba(43, 179, 240, .35); }
-  .get-card__name { font-size: 22px; font-weight: 600; margin: 0 0 4px; }
-  .get-card__meta { color: var(--p-inv-muted); margin: 0; font-size: 15px; }
-  .get-card__list { grid-column: 1 / -1; list-style: none; margin: 8px 0 0; padding: 0; display: grid; }
-  .get-card__list li { display: grid; grid-template-columns: 130px 1fr; gap: 12px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.12); font-size: 15px; }
-  .get-card__list b { color: var(--p-inv-accent); font-weight: 600; }
-  .get-card__list span { color: var(--p-inv-muted); }
-  @media (max-width: 639px) { .get-card { grid-template-columns: 1fr; } .get-card img { width: 72px; height: 72px; } .get-card__list li { grid-template-columns: 1fr; gap: 2px; } }
+/* hero */
+.hero { background: radial-gradient(1200px 600px at 75% -10%, rgba(43, 179, 240, .22), transparent 60%), radial-gradient(900px 500px at 0% 100%, rgba(21, 101, 216, .25), transparent 60%), var(--navy);
+  color: var(--on-dark); overflow: hidden; position: relative; }
+.hero::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 56px 56px; mask-image: linear-gradient(to bottom, #000 0%, transparent 85%); pointer-events: none; }
+.hero .wrap { position: relative; z-index: 1; padding-block: clamp(56px, 8vw, 104px) 0; display: grid; gap: 44px; }
+.hero__text { max-width: 860px; display: grid; gap: 22px; }
+.hero .eyebrow { color: var(--cyan); }
+.hero h1 { font-size: clamp(42px, 6.4vw, 80px); font-weight: 680; letter-spacing: -0.035em; }
+.hero h1 em { font-style: normal; background: linear-gradient(90deg, var(--cyan), #7fd3ff 60%, var(--yellow)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero .lead { color: var(--on-dark-muted); max-width: 64ch; }
+.hero__acts { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.hero__note { font-size: 14.5px; color: var(--on-dark-muted); display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.hero__note b { color: var(--on-dark); font-weight: 650; }
+.hero__note a { color: var(--on-dark); }
+.stage { position: relative; margin-top: 12px; padding-bottom: clamp(40px, 6vw, 80px); }
+.browser { background: #fff; border-radius: var(--r-lg) var(--r-lg) 10px 10px; box-shadow: var(--shadow), 0 0 0 1px rgba(255, 255, 255, .08); overflow: hidden; }
+.browser__bar { height: 38px; background: #eef2f7; border-bottom: 1px solid #dde4ee; display: flex; align-items: center; gap: 8px; padding: 0 14px; }
+.browser__bar i { width: 11px; height: 11px; border-radius: 50%; background: #d4dbe5; }
+.browser__bar i:nth-child(1) { background: #f3605a; } .browser__bar i:nth-child(2) { background: #f6bd3a; } .browser__bar i:nth-child(3) { background: #3dc35a; }
+.browser__url { margin-left: 14px; flex: 1; max-width: 420px; height: 24px; border-radius: 7px; background: #fff; border: 1px solid #dde4ee; font-size: 12.5px; color: #5d6b7e;
+  display: flex; align-items: center; padding: 0 10px; gap: 6px; overflow: hidden; white-space: nowrap; }
+.browser__url svg { flex: none; }
+.phone { position: absolute; width: clamp(150px, 19vw, 250px); aspect-ratio: 9 / 18.6; right: clamp(-6px, 2vw, 40px); bottom: clamp(10px, 2vw, 30px);
+  background: #0a0f15; border-radius: 34px; padding: 9px; box-shadow: var(--shadow), 0 0 0 1px rgba(255,255,255,.12); }
+.phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 26px; }
+.phone::before { content: ""; position: absolute; top: 17px; left: 50%; transform: translateX(-50%); width: 34%; height: 14px; background: #0a0f15; border-radius: 99px; z-index: 1; }
+@media (max-width: 640px) { .stage .phone { position: relative; right: auto; bottom: auto; margin: -60px auto 0; width: 230px; } }
+
+/* sections */
+section { padding-block: clamp(72px, 9vw, 120px); }
+.sec-head { display: grid; gap: 16px; max-width: 820px; margin-bottom: clamp(32px, 4vw, 52px); }
+.center { text-align: center; margin-inline: auto; justify-items: center; }
+.center .lead { margin-inline: auto; }
+
+/* one system */
+.system { background: var(--white); }
+.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 900px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .tiles { grid-template-columns: minmax(0, 1fr); } }
+.tile { border: 1px solid var(--line); border-radius: var(--r); padding: 24px; background: var(--bg); display: grid; gap: 8px; align-content: start; transition: transform .2s ease, box-shadow .2s ease; }
+.tile:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -28px rgba(7, 20, 32, .45); }
+.tile .n { font-family: var(--mono); font-size: 13px; color: var(--blue); font-weight: 700; }
+.tile p { color: var(--muted); font-size: 15.5px; }
+.flow { margin-top: 28px; padding: 22px 26px; border-radius: var(--r); background: var(--navy); color: var(--on-dark); display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; font-size: 15.5px; }
+.flow b { color: #fff; }
+.flow .arrow { color: var(--cyan); font-weight: 700; }
+.flow .chip { background: var(--navy-3); border: 1px solid rgba(255,255,255,.12); padding: 6px 12px; border-radius: 999px; }
+.flow .chip.red { border-color: rgba(255, 122, 107, .5); color: #ffb3aa; }
+
+/* feature rows */
+.feature { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.feature.flip { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.feature.flip .feature__text { order: 2; }
+@media (max-width: 960px) { .feature, .feature.flip { grid-template-columns: minmax(0, 1fr); } .feature.flip .feature__text { order: 0; } }
+.feature__text { display: grid; gap: 18px; align-content: start; }
+.points { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 12px; }
+.points li { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; color: var(--ink); font-size: 16.5px; }
+.points li::before { content: ""; width: 22px; height: 22px; margin-top: 2px; border-radius: 50%; background: rgba(21, 101, 216, .12) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m4.3 8.3 2.4 2.4 5-5.2' fill='none' stroke='%231565d8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat; }
+.points b { font-weight: 650; }
+.badge { justify-self: start; font-size: 12.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #6b4e00; background: #fff3c4; border: 1px solid #f2d36b; padding: 5px 10px; border-radius: 999px; }
+.shot { border-radius: var(--r); overflow: hidden; background: #fff; box-shadow: var(--shadow); border: 1px solid var(--line); }
+.shot img { width: 100%; height: auto; }
+.shot--crop { max-height: 560px; }
+.shot--crop img { object-fit: cover; object-position: top left; }
+.alt { background: var(--white); }
+
+/* insights band */
+.insights { background: radial-gradient(900px 500px at 100% 0%, rgba(43, 179, 240, .18), transparent 60%), var(--navy); color: var(--on-dark); }
+.insights .eyebrow { color: var(--cyan); }
+.insights .lead { color: var(--on-dark-muted); }
+.funnel { display: grid; grid-template-columns: minmax(0, 1.15fr) 56px minmax(0, 1fr) 56px minmax(0, 1.15fr); align-items: center; gap: 0; margin-top: 8px; }
+@media (max-width: 960px) { .funnel { grid-template-columns: minmax(0, 1fr); gap: 14px; } .funnel .join { transform: rotate(90deg); justify-self: center; } }
+.f-col { background: var(--navy-2); border: 1px solid rgba(255, 255, 255, .1); border-radius: var(--r); padding: 22px; display: grid; gap: 12px; align-content: start; }
+.f-col h3 { font-size: 17px; color: #fff; }
+.f-col .sub { color: var(--on-dark-muted); font-size: 14px; }
+.sources { display: flex; flex-wrap: wrap; gap: 8px; }
+.sources span { font-size: 14px; padding: 6px 11px; border-radius: 999px; background: var(--navy-3); border: 1px solid rgba(255, 255, 255, .12); color: var(--on-dark); }
+.checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-size: 14.5px; color: var(--on-dark); }
+.checks li { padding-left: 16px; border-left: 2px solid var(--cyan); }
+.checks li span { display: block; color: var(--on-dark-muted); font-size: 13.5px; }
+.finding { background: #fff; color: var(--ink); border-radius: 12px; padding: 14px 16px; display: grid; gap: 6px; }
+.finding .tag { justify-self: start; font-size: 12px; font-weight: 700; color: var(--blue-ink); background: #e5effd; padding: 3px 9px; border-radius: 999px; }
+.finding b { font-size: 15px; line-height: 1.35; }
+.finding .do { font-size: 13.5px; color: var(--muted); }
+.finding .do strong { color: #b4441a; font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; margin-right: 4px; }
+.finding .gbp { font-family: var(--mono); font-weight: 700; color: var(--good); font-size: 14px; }
+.join { display: grid; place-items: center; color: var(--cyan); }
+.notai { margin-top: 30px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 900px) { .notai { grid-template-columns: minmax(0, 1fr); } }
+.notai div { border-top: 2px solid var(--cyan); padding-top: 14px; color: var(--on-dark-muted); font-size: 15.5px; }
+.notai b { display: block; color: #fff; font-size: 17px; margin-bottom: 4px; }
+.insights .shot { margin-top: 44px; border-color: rgba(255,255,255,.1); }
+
+/* phones row */
+.phones { display: flex; gap: 22px; justify-content: center; align-items: flex-start; }
+.phones .phone { position: relative; right: auto; bottom: auto; width: clamp(180px, 22vw, 270px); }
+.phones .phone:nth-child(2) { margin-top: 48px; }
+@media (max-width: 560px) { .phones .phone { width: 46%; } .phones .phone:nth-child(2) { margin-top: 28px; } }
+
+/* compare */
+.compare { width: 100%; border-collapse: collapse; background: #fff; border-radius: var(--r); overflow: hidden; box-shadow: 0 1px 0 var(--line); font-size: 16px; }
+.compare th, .compare td { padding: 15px 18px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+.compare thead th { background: var(--navy); color: var(--on-dark); font-size: 14px; letter-spacing: .02em; }
+.compare thead th:last-child { color: #fff; background: var(--blue); }
+.compare td:nth-child(2) { color: var(--muted); }
+.compare td:last-child { font-weight: 600; }
+.compare td:last-child::before { content: "✓ "; color: var(--good); font-weight: 800; }
+.table-wrap { overflow-x: auto; border-radius: var(--r); border: 1px solid var(--line); }
+
+/* prices */
+.price-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: stretch; }
+@media (max-width: 860px) { .price-grid { grid-template-columns: minmax(0, 1fr); } }
+.plan { border-radius: var(--r-lg); padding: 32px; display: grid; gap: 14px; align-content: start; border: 1px solid var(--line); background: #fff; }
+.plan--hot { background: var(--navy); color: var(--on-dark); border-color: var(--navy); position: relative; overflow: hidden; }
+.plan--hot::after { content: ""; position: absolute; right: -80px; top: -80px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(242, 183, 5, .28), transparent 65%); }
+.plan .kicker { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); }
+.plan--hot .kicker { color: var(--yellow); }
+.plan .amount { font-size: clamp(48px, 6vw, 68px); font-weight: 700; letter-spacing: -0.04em; line-height: 1; }
+.plan .amount small { font-size: 17px; font-weight: 500; letter-spacing: 0; color: var(--muted); }
+.plan--hot .amount small, .plan--hot p { color: var(--on-dark-muted); }
+.plan p { color: var(--muted); }
+.plan .btn { justify-self: start; margin-top: 6px; }
+.included { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 10px; }
+.included span { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; font-size: 14.5px; }
+
+/* get it */
+.get { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 860px) { .get { grid-template-columns: minmax(0, 1fr); } }
+.get > div { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 26px; display: grid; gap: 10px; align-content: start; }
+.get p { color: var(--muted); font-size: 15.5px; }
+.get .btn { justify-self: start; }
+
+/* faq */
+.faq { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 40px; }
+@media (max-width: 860px) { .faq { grid-template-columns: minmax(0, 1fr); } }
+.faq div { padding: 20px 0; border-top: 1px solid var(--line); display: grid; gap: 6px; }
+.faq h3 { font-size: 18px; }
+.faq p { color: var(--muted); font-size: 16px; }
+
+/* closing + footer */
+.closing { background: var(--navy); color: var(--on-dark); text-align: center; }
+.closing .wrap { display: grid; gap: 22px; justify-items: center; }
+.closing h2 { max-width: 18ch; }
+.closing .lead { color: var(--on-dark-muted); }
+footer { background: #050e17; color: var(--on-dark-muted); font-size: 14.5px; padding-block: 40px calc(40px + env(safe-area-inset-bottom, 0px)); }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 18px 40px; align-items: center; justify-content: space-between; }
+footer nav { display: flex; flex-wrap: wrap; gap: 10px 22px; }
+footer a { color: var(--on-dark); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* arrival */
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.hero__text > *, .stage { animation: rise .7s cubic-bezier(.2, .7, .2, 1) both; }
+.hero__text > *:nth-child(2) { animation-delay: .06s; } .hero__text > *:nth-child(3) { animation-delay: .12s; } .hero__text > *:nth-child(4) { animation-delay: .18s; }
+.hero__text > *:nth-child(5) { animation-delay: .24s; } .stage { animation-delay: .3s; }
 </style>
 </head>
 <body>
-<!-- type: software (site-kind software): transport management software for UK hauliers
-     deal: hero centred, nav nav-centre, close close-type, footer footer-statement, rhythm space, buttons tonal,
-     mark: the client's own logo (wordmark beside it), palette: the client's own (the new TI logo's navy / blue / cyan via start.mjs brand, 2026-11-14), type instrument
-     moments: marquee-row, the last row of #prices (a row of real trade words) -->
 
-<header class="nav nav--centre">
-  <div class="wrap nav__bar">
-    <a class="skip-link" href="#top">Skip to content</a>
-    <a class="nav__logo" href="#top"><img src="logo-mark.png" alt="" width="32" height="32">TransportInsight</a>
-    <nav class="nav__links" aria-label="Main">
-      <div class="nav__item"><a class="nav__link" href="#planning">Planning</a></div>
-      <div class="nav__item"><a class="nav__link" href="#drivers">Drivers</a></div>
-      <div class="nav__item"><a class="nav__link" href="#workshop">Workshop</a></div>
-      <div class="nav__item"><a class="nav__link" href="#prices">Prices</a></div>
-      <div class="nav__item"><a class="nav__link" href="#questions">Questions</a></div>
-    </nav>
-    <div class="nav__actions">
-      <a class="btn btn--secondary nav__dl" href="https://app.transportinsight.co.uk/download/windows"><svg class="dl-ico" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0-3.2-3.2M8 10l3.2-3.2M3 13h10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Download</a>
-      <a class="btn btn--primary" href="https://app.transportinsight.co.uk/">Start a free trial</a>
-    </div>
-    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
-      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-    </button>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="logo-mark.png" alt="" width="34" height="34">TransportInsight</a>
+    <ul>
+      <li><a href="#system">One system</a></li>
+      <li><a href="#planning">Planning</a></li>
+      <li><a href="#insights">Insights</a></li>
+      <li><a href="#mot">MOT plan</a></li>
+      <li><a href="#workshop">Workshop</a></li>
+      <li><a href="#prices">Prices</a></li>
+    </ul>
+    <a class="btn btn--ghost dl" href="https://app.transportinsight.co.uk/download/windows"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0-3.2-3.2M8 10l3.2-3.2M3 13h10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Download</a>
+    <a class="btn btn--primary" href="https://app.transportinsight.co.uk/">Start a free trial</a>
   </div>
 </header>
 
 <main id="top">
-  <section class="hero hero--centred" data-enter aria-labelledby="hero-h">
-    <div class="wrap"><div class="hero-text">
-      <div class="hero__c">
-        <a class="pill" href="#questions"><span>14,109 jobs imported in 45 seconds</span><span class="muted">Read how</span></a>
-        <h1 id="hero-h">Transport software for UK hauliers</h1>
-        <p class="hero__lead">Price a load, plan the day on one board, send each run to the driver's phone and invoice the work. Every job shows its profit before you take it.</p>
-        <div class="btn-row"><a class="btn btn--primary" href="https://app.transportinsight.co.uk/">Start a free trial</a><a class="btn btn--secondary" href="https://app.transportinsight.co.uk/download/windows"><svg class="dl-ico" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0-3.2-3.2M8 10l3.2-3.2M3 13h10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Download for Windows</a></div>
-        <p class="hero__more"><a class="link" href="https://app.transportinsight.co.uk/#/sample">Or look around a sample company first</a></p>
-      </div>
-      <div class="hero__window" data-fx="painterly-landscape" data-fx-seed="7" role="img" aria-label="The Planning board putting a load on a vehicle and working out the day's profit">
-        <div class="ly-piece d-win d-win--dark" aria-hidden="true">
-          <div class="d-win__bar"><span class="d-win__dots"><i></i><i></i><i></i></span><span><b>Planning board</b> · Thursday 12 November</span><span class="sp"></span><span>8 runs · 21 loads</span></div>
-          <div class="d-win__body">
-            <div class="fleet">
-              <div class="q">Find a vehicle or a load</div>
-              <div class="t is-on"><b>DE24 MOH</b><time>3 loads</time><span>Danny Driver · back to Leyland</span></div>
-              <div class="t"><b>FA73 JWA</b><time>2 loads</time><span>Rachel Quayle · stays out</span></div>
-              <div class="t"><b>BU69 XFB</b><time>0 loads</time><span class="red">Off the road · Red defect</span></div>
-            </div>
-            <div class="convo">
-              <div class="d-chat" data-ly-steps="900">
-                <div class="d-msg d-msg--me">Northgate Aggregates · Buxton to Warrington · £300<small>dropped on DE24 MOH</small></div>
-                <div class="d-tool" data-step>Working out road miles, hours and the day's profit</div>
-                <div class="d-msg d-msg--bot" data-step>DE24 MOH now runs 3 loads: 41 empty miles, 9.6 hours, day profit £412.<small>Score 82 · good</small></div>
-                <div class="acts" data-step><span>Send to driver</span><span>Suggest order</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div></div>
-  </section>
-
-  <section class="section" id="planning" aria-labelledby="planning-h">
+  <section class="hero" aria-labelledby="hero-h">
     <div class="wrap">
-      <div class="grid">
-        <h2 class="span-5" id="planning-h">The Planning board</h2>
-        <div class="span-6 start-7 stack-4">
-          <p class="t-lead muted">Drag a load onto a vehicle and its empty miles, the driver's hours and the day's profit update as it lands. Optimise day plans the rest.</p>
-          <a class="link" href="#drivers">See what the driver gets</a>
+      <div class="hero__text">
+        <p class="eyebrow">Transport management software for UK hauliers</p>
+        <h1 id="hero-h">The whole haulage office in <em>one system</em>.</h1>
+        <p class="lead">Plan the day, run your drivers' phones, keep the fleet legal, fix it in your own workshop, invoice the work, and see exactly where you make and lose money. One set of figures from the quote to the invoice.</p>
+        <div class="hero__acts">
+          <a class="btn btn--primary" href="https://app.transportinsight.co.uk/">Start a free trial</a>
+          <a class="btn btn--ghost" href="https://app.transportinsight.co.uk/#/sample">Look around a sample company</a>
         </div>
+        <p class="hero__note"><span><b>£12.50</b> per vehicle a month for the first five firms</span><span><b>First month free</b> · no contract</span><span><a href="https://app.transportinsight.co.uk/download/windows">Download for Windows</a></span></p>
       </div>
-      <div class="ui app fill" role="img" aria-label="Unplanned loads beside DE24 MOH's run for the day, with its empty miles and day profit" data-ui-pause-host>
-        <div class="app__pane app__pane--list">
-          <div class="ui ui-panel ui-win" data-ui="window" data-open="Unplanned" data-work="Planning" data-done="On a run">
-            <div class="ui-win__bar">
-              <span class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-              <span class="ui-win__crumb">Planning <i>/</i> <b>Unplanned</b></span>
-              <span class="ui-spacer"></span>
-              <span class="ui-win__search" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg><span class="ui-win__ph">Search</span><span class="ui-kbd">/</span></span>
-            </div>
-            <div class="ui-win__body">
-              <nav class="ui-win__side" aria-hidden="true">
-                <span class="ui-win__nav is-on">Unplanned<em>9</em></span>
-                <span class="ui-win__nav">Today<em>21</em></span>
-                <span class="ui-win__nav">Tomorrow<em>17</em></span>
-                <span class="ui-win__label">Views</span>
-                <span class="ui-win__nav">Compact</span>
-                <span class="ui-win__nav">Map</span>
-              </nav>
-              <div class="ui-win__main">
-                <div class="ui-win__cols" aria-hidden="true"><span>Customer</span><span>Load</span><span>Status</span><span>Collect</span></div>
-                <ul class="ui-win__rows">
-                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">NA</span><span class="ui-win__who">Northgate Aggregates</span><span class="ui-win__sub">Buxton to Warrington · £300</span><span class="ui-win__st" data-st>Unplanned</span><span class="ui-win__age">07:30</span></li>
-                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="3">PW</span><span class="ui-win__who">Pennine Waste</span><span class="ui-win__sub">Bolton to Wigan · £300</span><span class="ui-win__st" data-st>Unplanned</span><span class="ui-win__age">08:00</span></li>
-                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="4">RR</span><span class="ui-win__who">Red Rose Skip Hire</span><span class="ui-win__sub">Blackburn to Leyland · £240</span><span class="ui-win__st" data-st>Unplanned</span><span class="ui-win__age">08:15</span></li>
-                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="2">TB</span><span class="ui-win__who">Trent Building Supplies</span><span class="ui-win__sub">Nottingham to Sheffield · £385</span><span class="ui-win__st" data-st>Unplanned</span><span class="ui-win__age">09:00</span></li>
-                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="5">CP</span><span class="ui-win__who">Cheshire Plastics</span><span class="ui-win__sub">Widnes to Warrington · day hire</span><span class="ui-win__st" data-st>Unplanned</span><span class="ui-win__age">06:00</span></li>
-                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">MD</span><span class="ui-win__who">Mancunian Demolition</span><span class="ui-win__sub">Trafford Park to Wigan · £300</span><span class="ui-win__st is-done" data-st>On a run</span><span class="ui-win__age">10:30</span></li>
-                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="3">FC</span><span class="ui-win__who">Fylde Coast Recycling</span><span class="ui-win__sub">Blackpool to Preston · £210</span><span class="ui-win__st is-done" data-st>On a run</span><span class="ui-win__age">11:00</span></li>
-                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="4">GW</span><span class="ui-win__who">Greenway Waste</span><span class="ui-win__sub">Lancaster to Leyland · £240</span><span class="ui-win__st is-done" data-st>On a run</span><span class="ui-win__age">12:15</span></li>
-                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="2">DG</span><span class="ui-win__who">Derwent Glass</span><span class="ui-win__sub">Derby to Rotherham · £300</span><span class="ui-win__st is-done" data-st>On a run</span><span class="ui-win__age">13:00</span></li>
-                </ul>
-              </div>
-            </div>
-          </div>
+      <div class="stage">
+        <div class="browser" role="img" aria-label="The TransportInsight Planning board: twenty vehicles, each with its loads, empty miles, day score and day profit">
+          <div class="browser__bar"><i></i><i></i><i></i><span class="browser__url"><svg width="11" height="11" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 7V5a3.5 3.5 0 0 1 7 0v2M3.5 7h9v7h-9z" fill="none" stroke="#6b7a8d" stroke-width="1.6"/></svg>app.transportinsight.co.uk/planning</span></div>
+          <img src="shots-web/board-compact.webp" alt="" width="1600" height="993">
         </div>
-        <div class="app__pane app__pane--open" data-ui-loop>
-          <div class="run">
-            <div class="run__head"><span class="run__reg">DE24 MOH</span><span class="run__who">Danny Driver · day run · trailer C005</span><span class="run__chip">Sent ✓</span></div>
-            <ol class="run__legs">
-              <li class="empty"><time>06:40</time><span>Leyland yard to Buxton</span><span>38 mi empty</span></li>
-              <li><time>07:30</time><span><b>Northgate Aggregates</b> <span class="pc">Buxton to Warrington</span></span><span class="gbp">£300</span></li>
-              <li class="empty"><time>10:05</time><span>Warrington to Trafford Park</span><span>3 mi empty</span></li>
-              <li><time>10:30</time><span><b>Mancunian Demolition</b> <span class="pc">Trafford Park to Wigan</span></span><span class="gbp">£300</span></li>
-              <li class="empty"><time>12:10</time><span>Wigan to Blackburn</span><span>0 mi empty, backload</span></li>
-              <li><time>12:40</time><span><b>Red Rose Skip Hire</b> <span class="pc">Blackburn to Leyland</span></span><span class="gbp">£240</span></li>
-              <li class="empty"><time>14:30</time><span>Leyland to the yard</span><span>0 mi empty</span></li>
-            </ol>
-            <div class="run__totals"><span>Empty <b>41 mi</b></span><span>Hours <b>9.6 h</b></span><span>Revenue <b>£840</b></span><span>Day profit <b>£412</b></span><span>Score <b>82 good</b></span></div>
-          </div>
-        </div>
+        <div class="phone" role="img" aria-label="The driver's phone: today's run with the vehicle, trailer and first job"><img src="shots-web/phone-run.webp" alt="" width="720" height="1465"></div>
       </div>
     </div>
   </section>
 
-  <section class="section g2" id="drivers" aria-labelledby="drivers-h">
+  <section class="system" id="system" aria-labelledby="system-h">
     <div class="wrap">
-      <div class="group">
-        <div class="section-head">
-          <h2 id="drivers-h">The driver's phone. <span class="muted">Steps, checks and tickets from the cab.</span></h2>
-        </div>
-        <div class="grid">
-          <article class="card card--row card--open span-6">
-            <h3>The driver app's run screen</h3>
-            <p>The driver taps arrived, loaded and delivered. The office sees each step a few seconds later.</p>
-            <div class="panel" data-fx="grain-gradient" data-fx-seed="21">
-              <div class="stage stage--fade-b"><div class="at-rise fit" style="--fit-max:380px;--ax:32px;--ay:calc(100% - 180px);--ay-sm:calc(100% - 180px)" data-ui-loop>
-                <div class="ui ui-notify" data-ui="notify">
-                  <ul class="ui-notify__list" data-notify-list>
-                    <li class="ui-note"><span class="ui-avatar ui-note__av" data-tone="1">DD</span><span class="ui-note__text"><span class="ui-note__title">Danny Driver delivered<time>now</time></span><span class="ui-note__body">Warrington · ticket TKT 6601</span></span><span class="ui-btn ui-btn--sm ui-note__btn">Open</span></li>
-                    <li class="ui-note"><span class="ui-avatar ui-note__av" data-tone="1">DD</span><span class="ui-note__text"><span class="ui-note__title">Loaded at Northgate<time>2h</time></span><span class="ui-note__body">Buxton · 1 photo of the load</span></span></li>
-                    <li class="ui-note"><span class="ui-note__ico"><svg class="ui-icon" viewBox="0 0 16 16"><path d="m3.5 8.4 2.8 2.8 6.2-6.4"/></svg></span><span class="ui-note__text"><span class="ui-note__title">Walk-around check sent<time>4h</time></span><span class="ui-note__body">DE24 MOH · all OK</span></span></li>
-                  </ul>
-                </div>
-              </div></div>
-            </div>
-          </article>
-          <article class="card card--row card--open span-6">
-            <h3>The walk-around checklist</h3>
-            <p>Every item is answered before the vehicle leaves, and a fault becomes a defect report for the workshop.</p>
-            <div class="panel" data-fx="grain-gradient" data-fx-seed="34">
-              <div class="stage stage--fade-b"><div class="at-rise fit" style="--fit-max:340px;--ax:max(24px, 50% - 170px);--ay:40px;--ay-sm:24px">
-                <div class="ui ui-panel ui-checks" data-ui="checklist">
-                  <div class="ui-checks__head"><div class="ui-title">DE24 MOH walk-around</div><span class="ui-spacer"></span><div class="ui-meta" data-checks-count>3 of 6</div></div>
-                  <div class="ui-checks__bar"><i data-checks-bar style="--k:0.5"></i></div>
-                  <ul class="ui-checks__list">
-                    <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Tyres and wheel nuts</span></li>
-                    <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Lights and indicators</span></li>
-                    <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Mirrors and glass</span></li>
-                    <li class="ui-check"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Brakes and air lines</span></li>
-                    <li class="ui-check"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Load security</span></li>
-                    <li class="ui-check"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Fuel and AdBlue</span></li>
-                  </ul>
-                </div>
-              </div></div>
-            </div>
-          </article>
-        </div>
+      <div class="sec-head">
+        <p class="eyebrow">One system, one set of figures</p>
+        <h2 id="system-h">Most transport software stops at planning and invoicing. This doesn't.</h2>
+        <p class="lead">Walk-around checks, the MOT plan, the workshop, staff files and the money usually live in four other places. In TransportInsight they're one system, so nothing gets typed twice and every figure agrees.</p>
       </div>
-      <div class="grid">
-          <article class="card card--row card--open span-6">
-            <h3>Defect colours: Red, Amber, Green</h3>
-            <p>Red, Amber or Green, following DVSA's categorisation of defects. A Red defect keeps the vehicle off the board.</p>
-            <div class="panel" data-fx="grain-gradient" data-fx-seed="47">
-              <div class="dg" data-diagram='{"layout":"lanes","alt":"A fault reported from the phone goes through the fault colour guide and comes out Red, Amber or Green.","input":{"label":"Phone","icon":"ui:smartphone","sub":"DE24 MOH"},"core":{"label":"Guide","icon":"ui:list-checks"},"lanes":[{"label":"Red","icon":"ui:x","done":true,"sub":"Off the road"},{"label":"Amber","icon":"ui:bell-ring","done":true,"sub":"Fix soon"},{"label":"Green","icon":"ui:check","done":true,"sub":"Cosmetic"}]}'></div>
-            </div>
-          </article>
-          <article class="card card--row card--open span-6">
-            <h3>The delivery ticket store</h3>
-            <p>Delivery tickets, photos and signatures are stored with the job and come with it onto the invoice's backing sheet.</p>
-            <div class="panel" data-fx="grain-gradient" data-fx-seed="58">
-              <div class="stage stage--fade-br"><div class="at-corner wide" style="--w:680px;--ax:24px;--ay:40px">
-                <div class="ui ui-files" data-ui="files" data-reading="Saving {n} of {total}">
-                  <div class="ui-files__status"><span class="ui-dot"></span><span data-files-status>4 files kept</span></div>
-                  <ul class="ui-files__grid">
-                    <li class="ui-file is-done"><span class="ui-file__icon"><img data-icon="image" src="assets/icons/image.svg" alt=""></span><span class="ui-file__name">Ticket TKT 6601</span><span class="ui-file__kind">Photo</span><span class="ui-file__bar"><i></i></span><span class="ui-file__check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 8.2 2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-                    <li class="ui-file is-done"><span class="ui-file__icon"><img data-icon="image" src="assets/icons/image.svg" alt=""></span><span class="ui-file__name">The load at Buxton</span><span class="ui-file__kind">Photo</span><span class="ui-file__bar"><i></i></span><span class="ui-file__check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 8.2 2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-                    <li class="ui-file is-done"><span class="ui-file__icon"><img data-icon="pdf" src="assets/icons/pdf.svg" alt=""></span><span class="ui-file__name">Consignment note</span><span class="ui-file__kind">PDF</span><span class="ui-file__bar"><i></i></span><span class="ui-file__check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 8.2 2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-                    <li class="ui-file is-done"><span class="ui-file__icon"><img data-icon="pdf" src="assets/icons/pdf.svg" alt=""></span><span class="ui-file__name">Backing sheet</span><span class="ui-file__kind">PDF</span><span class="ui-file__bar"><i></i></span><span class="ui-file__check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 8.2 2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
-                  </ul>
-                </div>
-              </div></div>
-            </div>
-          </article>
+      <div class="tiles">
+        <div class="tile"><span class="n">Price</span><h3>Know the profit before you say yes</h3><p>Road miles, fuel, driver pay, the vehicle's running costs and the empty miles back, from your own figures.</p></div>
+        <div class="tile"><span class="n">Plan</span><h3>One board for the whole day</h3><p>Compact, Detailed or Map. Optimise day suggests who does what with the fewest empty miles.</p></div>
+        <div class="tile"><span class="n">Drivers</span><h3>The run on every driver's phone</h3><p>Steps, walk-around checks, Red/Amber/Green defects, tickets and photos. Works with no signal.</p></div>
+        <div class="tile"><span class="n">Compliance</span><h3>Legal, without the drawer of paper</h3><p>MOTs checked with DVSA and planned for you, inspections, tacho, licences, operator licence and FORS.</p></div>
+        <div class="tile"><span class="n">Workshop</span><h3>Your own workshop, built in</h3><p>Job cards, a mechanics' app with clocking, parts and stock, bookings, and outside garages compared.</p></div>
+        <div class="tile"><span class="n">Money</span><h3>Invoices, Sage 50 and Insights</h3><p>Backing sheets build themselves, credit control chases, and Insights explains where the money goes.</p></div>
+      </div>
+      <div class="flow" aria-label="An example of the system working together">
+        <span>A driver reports a fault</span><span class="arrow">→</span><span class="chip red">Red: don't drive it</span><span class="arrow">→</span>
+        <span class="chip">off the Planning board</span><span class="arrow">→</span><span class="chip">job card for the workshop</span><span class="arrow">→</span>
+        <span class="chip">repair cost in that vehicle's real profit</span><span class="arrow">→</span><b>back on the board when it's fixed</b>
       </div>
     </div>
   </section>
 
-  <section class="section" id="workshop" aria-labelledby="workshop-h">
+  <section id="planning" aria-labelledby="planning-h">
+    <div class="wrap feature">
+      <div class="feature__text">
+        <p class="eyebrow">The Planning board</p>
+        <h2 id="planning-h">Plan tomorrow in minutes, on the map or the board.</h2>
+        <p class="lead">Drag loads onto vehicles and watch the empty miles, the driver's hours and the day's profit change as they land.</p>
+        <ul class="points">
+          <li><span><b>Three ways to see the day:</b> one line per vehicle, full detail, or every run on the map, with the loads that fit a run lit up.</span></li>
+          <li><span><b>Optimise day</b> finds the fewest empty miles, and "Plan everything" puts every load somewhere.</span></li>
+          <li><span><b>Real haulage built in:</b> nights out and where each vehicle starts tomorrow, split loads and trailer handovers, double shifts, day hire.</span></li>
+          <li><span><b>A day profit per vehicle</b> that counts the vehicle and the driver once, not once per job.</span></li>
+        </ul>
+      </div>
+      <div class="shot" role="img" aria-label="Map view of the Planning board with one vehicle's run picked, numbered, beside its list of loads"><img src="shots-web/board-map.webp" alt="" width="1600" height="1145" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="insights" id="insights" aria-labelledby="insights-h">
     <div class="wrap">
-      <div class="grid grid--top fill">
-        <div class="span-5 stack-6">
-          <h2 id="workshop-h">The workshop and the MOT plan</h2>
-          <p class="t-lead">A defect becomes a job card. Mechanics clock on from their phone, parts come off the stock list, and the vehicle goes back on the board when the repair is done.</p>
-          <ul class="plan-list">
-            <li>MOT dates checked against DVSA</li>
-            <li>Tachograph downloads and working time</li>
-            <li>Outside garages' prices compared</li>
+      <div class="sec-head">
+        <p class="eyebrow">Insights</p>
+        <h2 id="insights-h">Know why a job made money, not just whether it did.</h2>
+        <p class="lead">Everything TransportInsight knows about your business feeds one engine. It checks your figures properly and writes plain-English findings, with the pounds attached and what to do about each one.</p>
+      </div>
+      <div class="funnel">
+        <div class="f-col">
+          <h3>What goes in</h3><p class="sub">Your own records, from across the system</p>
+          <div class="sources"><span>Jobs and rates</span><span>Road and empty miles</span><span>Fuel cards</span><span>Payroll</span><span>Volvo engine data and trackers</span><span>Time on site</span><span>Walk-around checks</span><span>Garage and tyre bills</span><span>Workshop job cards</span><span>Invoices and payments</span></div>
+        </div>
+        <div class="join" aria-hidden="true"><svg width="36" height="20" viewBox="0 0 36 20"><path d="M2 10h30m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="f-col">
+          <h3>How it's checked</h3><p class="sub">Proper statistics, not guesswork</p>
+          <ul class="checks">
+            <li>Like for like<span>a customer is judged against the same vehicle type and distance</span></li>
+            <li>A fair rate for every lane<span>worked out from all your work, so an underpriced lane stands out</span></li>
+            <li>Chance ruled out<span>a pattern counts only if it's very unlikely to be luck</span></li>
+            <li>Real costs, not estimates<span>fuel, pay and bills set against what each job was priced at</span></li>
           </ul>
-          <a class="link" href="#prices">See the prices</a>
         </div>
-        <div class="frame frame--split frame--lit span-6 start-7">
-          <div class="stage stage--fade-br"><div class="at-corner to-edge" style="--ax:56px;--ay:56px">
-            <div class="ui ui-panel ui-win" data-ui="window" data-open="Waiting" data-work="Clocked on" data-done="Done">
-              <div class="ui-win__bar">
-                <span class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-                <span class="ui-win__crumb">Workshop <i>/</i> <b>Job cards</b></span>
-                <span class="ui-spacer"></span>
-                <span class="ui-win__search" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg><span class="ui-win__ph">Registration</span><span class="ui-kbd">/</span></span>
-              </div>
-              <div class="ui-win__body">
-                <nav class="ui-win__side" aria-hidden="true">
-                  <span class="ui-win__nav is-on">Open<em>7</em></span>
-                  <span class="ui-win__nav">Bookings<em>4</em></span>
-                  <span class="ui-win__nav">Defects<em>3</em></span>
-                  <span class="ui-win__nav">Parts</span>
-                </nav>
-                <div class="ui-win__main">
-                  <div class="ui-win__cols" aria-hidden="true"><span>Vehicle</span><span>Job</span><span>Status</span><span>Card</span></div>
-                  <ul class="ui-win__rows">
-                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">KW</span><span class="ui-win__who">BU69 XFB</span><span class="ui-win__sub">Indicator not flashing · Red</span><span class="ui-win__st" data-st>Waiting</span><span class="ui-win__age">JC-0352</span></li>
-                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="3">KW</span><span class="ui-win__who">DS71 XJG</span><span class="ui-win__sub">Tyre bulge, outer nearside</span><span class="ui-win__st" data-st>Waiting</span><span class="ui-win__age">JC-0353</span></li>
-                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="4">KW</span><span class="ui-win__who">DE24 MOH</span><span class="ui-win__sub">6-weekly safety inspection</span><span class="ui-win__st" data-st>Waiting</span><span class="ui-win__age">JC-0354</span></li>
-                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="2">KW</span><span class="ui-win__who">NU71 UMT</span><span class="ui-win__sub">Oil and filter service</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0349</span></li>
-                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="5">KW</span><span class="ui-win__who">T004</span><span class="ui-win__sub">Wheel nut indicators</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0347</span></li>
-                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">KW</span><span class="ui-win__who">FA73 JWA</span><span class="ui-win__sub">MOT booked Friday</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0344</span></li>
-                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="3">KW</span><span class="ui-win__who">GS69 NUY</span><span class="ui-win__sub">MOT test day prep</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0341</span></li>
-                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="4">KW</span><span class="ui-win__who">C009</span><span class="ui-win__sub">Curtain strap replaced</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0339</span></li>
-                    <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="5">KW</span><span class="ui-win__who">WE73 ERY</span><span class="ui-win__sub">Tacho calibration</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">JC-0336</span></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div></div>
+        <div class="join" aria-hidden="true"><svg width="36" height="20" viewBox="0 0 36 20"><path d="M2 10h30m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="f-col">
+          <h3>What comes out</h3><p class="sub">Findings in plain English, biggest first</p>
+          <div class="finding"><span class="tag">Strong evidence</span><b>Vehicles finish at Wigan Landfill and drive home empty 684 times</b><span class="gbp">about £10,439 a quarter</span><span class="do"><strong>What to do</strong>Plan a return load from there: you already collect 12 miles away.</span></div>
+          <div class="finding"><span class="tag">Strong evidence</span><b>One customer makes 139p a mile less profit than the same kind of work</b><span class="do"><strong>What to do</strong>Charge for the miles back, or find a backload.</span></div>
         </div>
+      </div>
+      <div class="notai">
+        <div><b>Not an AI guessing</b>Every finding comes from set calculations on your own figures, so the same data always gives the same answer.</div>
+        <div><b>It says how sure it is</b>Strong evidence, or worth watching. A weak pattern is never stated as fact.</div>
+        <div><b>Every finding shows its working</b>Open it to see the jobs, bills and days behind it, and check them yourself.</div>
+      </div>
+      <div class="shot" role="img" aria-label="The Insights screen: 107 findings, real margin 15%, empty running 43%, and the biggest findings with what to do"><img src="shots-web/insights.webp" alt="" width="1600" height="1157" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="alt" id="mot" aria-labelledby="mot-h">
+    <div class="wrap feature flip">
+      <div class="feature__text">
+        <span class="badge">Rare in transport software</span>
+        <p class="eyebrow">The MOT plan</p>
+        <h2 id="mot-h">Your MOTs planned around the rules, so you never lose a month.</h2>
+        <p class="lead">Tell it your test days, such as every Friday, one booking a day. It places every vehicle and trailer on the best day.</p>
+        <ul class="points">
+          <li><span><b>Gains you a month</b> where the rules allow it, and never loses one without asking.</span></li>
+          <li><span><b>Keeps a vehicle and its trailer together</b> as one booking, and suggests trailer swaps that save a trip.</span></li>
+          <li><span><b>Every date checked with DVSA</b>, trailers included, then the plan exports to Excel.</span></li>
+        </ul>
+      </div>
+      <div class="shot shot--crop" role="img" aria-label="The MOT plan: test days by month, a vehicle booked and gaining a month, and a suggested trailer swap"><img src="shots-web/mot-plan.webp" alt="" width="1600" height="1157" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section id="workshop" aria-labelledby="workshop-h">
+    <div class="wrap feature">
+      <div class="feature__text">
+        <p class="eyebrow">The workshop</p>
+        <h2 id="workshop-h">From a driver's defect to a fixed vehicle, in one place.</h2>
+        <p class="lead">Defects come in from the phone in DVSA's Red, Amber and Green. A Red one takes the vehicle off the board until the workshop signs it off.</p>
+        <ul class="points">
+          <li><span><b>Job cards on a board</b>, a mechanics' phone app with clocking, parts off the stock list, and workshop bookings.</span></li>
+          <li><span><b>Outside garages and tyre firms compared</b> on price and how quickly they turn up.</span></li>
+          <li><span><b>The loads a breakdown cost you</b>, counted, so you know what downtime really costs.</span></li>
+        </ul>
+      </div>
+      <div class="shot" role="img" aria-label="Workshop job cards by status, including a Red defect keeping a vehicle off the road"><img src="shots-web/job-cards.webp" alt="" width="1600" height="759" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="alt" id="drivers" aria-labelledby="drivers-h">
+    <div class="wrap feature flip">
+      <div class="feature__text">
+        <p class="eyebrow">The driver's phone</p>
+        <h2 id="drivers-h">Fewer phone calls. The run is on the phone.</h2>
+        <p class="lead">Any smartphone with a browser. Nothing to buy, nothing to install from a store.</p>
+        <ul class="points">
+          <li><span><b>Each run sent to the driver</b>: jobs in order, sites, refs and Navigate. One tap at each step, and the office sees it seconds later.</span></li>
+          <li><span><b>The daily walk-around check</b> kept as the legal record, with any fault raised as a defect.</span></li>
+          <li><span><b>Tickets, photos and signatures</b> kept with the job and on the customer's backing sheet. It keeps working with no signal.</span></li>
+        </ul>
+      </div>
+      <div class="phones">
+        <div class="phone" role="img" aria-label="The driver's run for the day"><img src="shots-web/phone-run.webp" alt="" width="720" height="1465" loading="lazy"></div>
+        <div class="phone" role="img" aria-label="The walk-around check on the phone"><img src="shots-web/phone-check.webp" alt="" width="720" height="1478" loading="lazy"></div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="prices" aria-labelledby="prices-h">
+  <section id="compare" aria-labelledby="compare-h">
     <div class="wrap">
-      <div class="grid grid--top">
-        <div class="span-5 stack-6">
-          <div class="stack-4">
-            <h2 id="prices-h">Prices</h2>
-            <p class="t-lead">One price per vehicle covers the whole office, every driver and every mechanic. Five vehicles on the founding offer is £62.50 a month.</p>
-          </div>
-          <!-- PRICES (Harley 2026-11-15): founding offer for the first 5 firms, then £25 per vehicle a month -->
-          <article class="card card--plan">
-            <h3>Founding customers</h3>
-            <p>The first five haulage firms, in return for telling us what works and what doesn't</p>
-            <p class="price-big">£12.50 <span>per vehicle a month</span></p>
-            <p class="t-small muted">Kept for as long as you stay. After the first five: £25 per vehicle a month. Unlimited office, driver and mechanic logins, first month free, no contract.</p>
-            <a class="btn btn--secondary" href="mailto:sales@transportinsight.co.uk?subject=A%20founding%20place">Ask for a founding place</a>
-          </article>
-        </div>
-        <div class="frame frame--split frame--lit span-6 start-7">
-          <div class="stage stage--fade-b"><div class="at-rise fit" style="--fit-max:360px;--ax:max(24px, 50% - 180px);--ay:48px;--ay-sm:24px">
-            <div class="ui ui-panel ui-checks" data-ui="checklist">
-              <div class="ui-checks__head"><div class="ui-title">Included for every company</div><span class="ui-spacer"></span><div class="ui-meta" data-checks-count>6 of 6</div></div>
-              <div class="ui-checks__bar"><i data-checks-bar style="--k:1"></i></div>
-              <ul class="ui-checks__list">
-                <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Route Builder quotes and price lists</span></li>
-                <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Planning board and Optimise day</span></li>
-                <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Driver and mechanic phone apps</span></li>
-                <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Workshop, MOT plan and compliance</span></li>
-                <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Invoicing and the Sage 50 export</span></li>
-                <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Insights on every job's profit</span></li>
-              </ul>
-            </div>
-          </div></div>
-        </div>
+      <div class="sec-head">
+        <p class="eyebrow">How it compares</p>
+        <h2 id="compare-h">What you'd normally need several products for.</h2>
       </div>
-      <div style="margin-top: var(--s-7)">
-        <p class="t-label">Made for the work hauliers do</p>
-        <div data-moment="marquee-row" data-moment-opts='{"speed": 36}'>
-          <ul class="mo-mq__track"><li>Tippers</li><li>Artics</li><li>Rigids</li><li>Curtainsiders</li><li>Walking floors</li><li>Skip loaders</li><li>Day hire</li><li>Aggregates</li><li>Waste and recycling</li><li>Pallets</li><li>Split loads</li><li>Nights out</li></ul>
-        </div>
+      <div class="table-wrap">
+        <table class="compare">
+          <thead><tr><th scope="col">What you need</th><th scope="col">Most transport software</th><th scope="col">TransportInsight</th></tr></thead>
+          <tbody>
+            <tr><td>Planning, driver app, invoicing</td><td>Yes</td><td>Yes, with profit on every job and every vehicle-day</td></tr>
+            <tr><td>Walk-around checks and defects</td><td>Often a separate product</td><td>Built in, DVSA's Red, Amber, Green</td></tr>
+            <tr><td>MOT planning</td><td>Due dates at best</td><td>A plan of test days that gains you months</td></tr>
+            <tr><td>Your own workshop</td><td>Separate system</td><td>Job cards, mechanics' app, stock, bookings</td></tr>
+            <tr><td>Staff files, holidays, recruitment</td><td>Separate system</td><td>Built in</td></tr>
+            <tr><td>Real costs against estimates</td><td>Rarely</td><td>Fuel, payroll, garage and tyre bills, real MPG</td></tr>
+            <tr><td>Where you lose money, and why</td><td>Dashboards of totals</td><td>Plain-English findings with £ and what to do</td></tr>
+            <tr><td>How you're charged</td><td>Per office user, plus per device</td><td>Per vehicle, unlimited logins</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
 
-
-  <section class="section" id="get-it" aria-labelledby="get-it-h">
+  <section class="alt" id="prices" aria-labelledby="prices-h">
     <div class="wrap">
-      <div class="grid grid--top fill">
-        <div class="span-5 stack-6">
-          <div class="stack-4">
-            <h2 id="get-it-h">The apps: browser, Windows and phone</h2>
-            <p class="t-lead">The office signs in from any browser or the Windows app. Drivers and mechanics add it to their phone's home screen, and it keeps working with no signal.</p>
-          </div>
-          <div class="btn-row"><a class="btn btn--primary" href="https://app.transportinsight.co.uk/download/windows"><svg class="dl-ico" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0-3.2-3.2M8 10l3.2-3.2M3 13h10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Download for Windows</a><a class="btn btn--secondary" href="https://app.transportinsight.co.uk/#/sample">Look around a sample company</a></div>
-          <a class="link" href="https://app.transportinsight.co.uk/guide/">Read the how-to guide</a>
+      <div class="sec-head">
+        <p class="eyebrow">Prices</p>
+        <h2 id="prices-h">One price per vehicle. Bring the whole office.</h2>
+        <p class="lead">Every office login, every driver and every mechanic is included. Five vehicles on the founding offer is £62.50 a month.</p>
+      </div>
+      <div class="price-grid">
+        <div class="plan plan--hot">
+          <span class="kicker">Founding offer · the first five firms</span>
+          <div class="amount">£12.50 <small>per vehicle a month</small></div>
+          <p>Kept for as long as you stay, in return for telling us what works and what doesn't. First month free, no contract.</p>
+          <a class="btn btn--primary" href="mailto:sales@transportinsight.co.uk?subject=A%20founding%20place">Ask for a founding place</a>
         </div>
-        <div class="frame frame--split frame--lit span-6 start-7" data-fx="grain-gradient" data-fx-seed="63">
-          <div class="stage"><div class="at-rise fit" style="--fit-max:440px;--ax:max(20px, 50% - 220px);--ay:max(32px, 50% - 215px);--ay-sm:20px">
-          <div class="ui ui-panel get-card">
-            <img src="logo-mark.png" alt="" width="96" height="96">
-            <div>
-              <p class="get-card__name">TransportInsight for Windows</p>
-              <p class="get-card__meta">Windows 10 and 11 · 15 MB installer · signs in to your company like the browser</p>
-            </div>
-            <ul class="get-card__list">
-              <li><b>Browser</b><span>Sign in at the app's address from any PC or Mac</span></li>
-              <li><b>Windows app</b><span>Run the installer: it adds TransportInsight to the Start menu</span></li>
-              <li><b>Phone</b><span>Open the link, then Add to Home Screen</span></li>
-            </ul>
-          </div>
-          </div></div>
+        <div class="plan">
+          <span class="kicker">After the first five</span>
+          <div class="amount">£25 <small>per vehicle a month</small></div>
+          <p>Everything included, nothing per user. First month free, no contract.</p>
+          <a class="btn btn--light" href="https://app.transportinsight.co.uk/#/sample">Look around a sample company</a>
         </div>
+      </div>
+      <div class="included" aria-label="Included for every company">
+        <span>Route Builder and price lists</span><span>Planning board and Optimise day</span><span>Driver and mechanic phone apps</span><span>Compliance and the MOT plan</span>
+        <span>The workshop</span><span>Staff files and holidays</span><span>Invoicing and Sage 50</span><span>Insights</span><span>Volvo Connect and tracker links</span><span>The Windows app</span>
       </div>
     </div>
   </section>
 
-  <section class="section" id="questions" aria-labelledby="questions-h">
+  <section id="get-it" aria-labelledby="get-h">
     <div class="wrap">
-      <div class="grid grid--top">
-        <div class="span-5 stack-4">
-          <h2 id="questions-h">Questions</h2>
-          <p class="t-lead muted">What haulage offices ask before they move off a whiteboard and a spreadsheet.</p>
-          <a class="link" href="mailto:hello@transportinsight.co.uk">Email a question</a>
-        </div>
-        <div class="faq span-6 start-7">
-          <div class="faq__item"><h3>Can I bring my old jobs in?</h3><p>Yes. Import a CSV from Mandata or a spreadsheet: 14,109 real jobs took about 45 seconds, and an import can be undone.</p></div>
-          <div class="faq__item"><h3>Can I look round first?</h3><p>Yes. Open the sample company from the sign-in screen: six months of a haulier's work on every page, with no sign-up.</p></div>
-          <div class="faq__item"><h3>Does it export to Sage 50?</h3><p>Yes: invoices, credit notes and payments. Other accounts packages are not supported yet.</p></div>
-          
-          <div class="faq__item"><h3>Does it suit a one-man band?</h3><p>Yes. Switch on one-man band and the office login is also the driver, with the phone screens inside the app.</p></div>
-          <div class="faq__item"><h3>Can a planner see the company's money?</h3><p>Only if you tick it. Each login sees the sections you give it, and the change takes effect on their next click.</p></div>
-        </div>
+      <div class="sec-head">
+        <p class="eyebrow">Get the apps</p>
+        <h2 id="get-h">In the browser, on Windows and on the phone.</h2>
+      </div>
+      <div class="get">
+        <div><h3>Browser</h3><p>Sign in from any PC or Mac at app.transportinsight.co.uk.</p><a class="btn btn--light" href="https://app.transportinsight.co.uk/">Open the app</a></div>
+        <div><h3>Windows app</h3><p>A 15 MB installer that adds TransportInsight to the Start menu.</p><a class="btn btn--primary" href="https://app.transportinsight.co.uk/download/windows">Download for Windows</a></div>
+        <div><h3>Phone</h3><p>Drivers and mechanics open the link and tap Add to Home Screen. It works with no signal.</p><a class="btn btn--light" href="https://app.transportinsight.co.uk/guide/">Read the how-to guide</a></div>
       </div>
     </div>
   </section>
 
+  <section class="alt" id="questions" aria-labelledby="questions-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Questions</p>
+        <h2 id="questions-h">What haulage offices ask first.</h2>
+      </div>
+      <div class="faq">
+        <div><h3>Can I bring my old jobs in?</h3><p>Yes. Import from Mandata or a spreadsheet: 14,109 real jobs took about 45 seconds, and an import can be undone.</p></div>
+        <div><h3>Can I look round first?</h3><p>Yes. Open the sample company from the sign-in screen: six months of a haulier's work on every page, with no sign-up.</p></div>
+        <div><h3>Does it export to Sage 50?</h3><p>Yes: invoices, credit notes and payments, with haulage and workshop each to its own nominal code.</p></div>
+        <div><h3>Does it suit a one-man band?</h3><p>Yes. Switch on one-man band and your office login is also the driver, with the phone screens inside the app.</p></div>
+        <div><h3>Can a planner see the company's money?</h3><p>Only if you tick it. Each login sees just the sections you give it, and a change takes effect on their next click.</p></div>
+        <div><h3>Where is my data kept?</h3><p>In the UK, on servers in London. Each company's data is kept apart from every other's, and you can download all of it at any time.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing" aria-labelledby="close-h">
+    <div class="wrap">
+      <h2 id="close-h">Plan tomorrow on TransportInsight.</h2>
+      <p class="lead">Try it on your own vehicles and customers. First month free.</p>
+      <div class="hero__acts"><a class="btn btn--primary" href="https://app.transportinsight.co.uk/">Start a free trial</a><a class="btn btn--ghost" href="mailto:hello@transportinsight.co.uk">hello@transportinsight.co.uk</a></div>
+    </div>
+  </section>
 </main>
 
-<footer class="footer closing footer--statement" id="contact" aria-labelledby="close-h">
+<footer>
   <div class="wrap">
-    <div class="closing__cta close--type">
-      <div class="section-head">
-        <h2 id="close-h">Plan tomorrow on TransportInsight</h2>
-        <p class="t-small muted">Try it on your own vehicles and customers, in the browser, the Windows app or on drivers' phones.</p>
-      </div>
-      <a class="btn btn--primary btn--xl btn--wide" href="https://app.transportinsight.co.uk/">Start a free trial<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
-    </div>
-    <div class="closing__links">
-      <div class="grid">
-        <div class="span-4 stack-4">
-          <a class="nav__logo" href="#top"><img src="logo-mark.png" alt="" width="32" height="32">TransportInsight</a>
-          <p class="footer__lede">Transport management software for UK haulage firms.</p>
-        </div>
-        <div class="span-2 footer__col"><h3>Product</h3><ul><li><a href="#planning">Planning</a></li><li><a href="#drivers">Drivers</a></li><li><a href="#workshop">Workshop</a></li></ul></div>
-        <div class="span-2 footer__col"><h3>Buying</h3><ul><li><a href="#prices">Prices</a></li><li><a href="#get-it">Get the app</a></li><li><a href="#questions">Questions</a></li></ul></div>
-        <div class="span-4 footer__col"><h3>Account</h3><ul><li><a href="https://app.transportinsight.co.uk/">Sign in</a></li><li><a href="https://app.transportinsight.co.uk/guide/">How-to guide</a></li><li><a href="https://app.transportinsight.co.uk/download/windows">Download for Windows</a></li></ul></div>
-      </div>
-      <div class="footer__legal">
-        <span>&copy; 2026 TransportInsight</span>
-        <div class="socials"></div>
-      </div>
-    </div>
+    <a class="brand" href="#top"><img src="logo-mark.png" alt="" width="28" height="28">TransportInsight</a>
+    <nav aria-label="Footer">
+      <a href="https://app.transportinsight.co.uk/">Sign in</a>
+      <a href="https://app.transportinsight.co.uk/#/sample">Sample company</a>
+      <a href="https://app.transportinsight.co.uk/guide/">How-to guide</a>
+      <a href="https://app.transportinsight.co.uk/download/windows">Download for Windows</a>
+      <a href="mailto:hello@transportinsight.co.uk">hello@transportinsight.co.uk</a>
+    </nav>
+    <span>© 2026 TransportInsight</span>
   </div>
 </footer>
-
-<nav class="actionbar" aria-label="Quick actions">
-  <a class="btn btn--primary" href="https://app.transportinsight.co.uk/">Start a free trial</a>
-</nav>
-
-<script type="module" src="assets/system.js"></script>
-<script type="module" src="assets/motion/motion.js"></script>
-<script type="module" src="assets/layout/layout.js"></script>
-<script type="module" src="assets/diagrams/mount.js"></script>
 </body>
 </html>
