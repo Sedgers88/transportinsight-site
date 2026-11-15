@@ -52,6 +52,8 @@ p { margin: 0; }
 .btn--ghost { background: rgba(255, 255, 255, .08); color: var(--on-dark); border-color: rgba(255, 255, 255, .22); }
 .btn--ghost:hover { background: rgba(255, 255, 255, .14); }
 .btn--light { background: var(--white); color: var(--ink); border-color: var(--line); }
+.skip { position: absolute; left: 12px; top: -60px; z-index: 100; padding: 10px 14px; background: #fff; color: #0b1730; border-radius: 8px; font-weight: 600; }
+.skip:focus { top: 12px; }
 .btn:focus-visible, a:focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; }
 .btn svg { flex: none; }
 
@@ -253,6 +255,7 @@ footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
+<a class="skip" href="#top">Skip to the main content</a>
 
 <header class="nav">
   <div class="wrap">
@@ -286,7 +289,7 @@ footer a:hover { text-decoration: underline; }
       <div class="stage">
         <div class="browser" role="img" aria-label="The TransportInsight Planning board: twenty vehicles, each with its loads, empty miles, day score and day profit">
           <div class="browser__bar"><i></i><i></i><i></i><span class="browser__url"><svg width="11" height="11" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 7V5a3.5 3.5 0 0 1 7 0v2M3.5 7h9v7h-9z" fill="none" stroke="#6b7a8d" stroke-width="1.6"/></svg>app.transportinsight.co.uk/planning</span></div>
-          <img src="shots-web/board-compact.webp" alt="" width="1600" height="993">
+          <img src="shots-web/board-compact.webp" alt="" width="1600" height="993" fetchpriority="high">
         </div>
         <div class="phone" role="img" aria-label="The driver's phone: today's run with the vehicle, trailer and first job"><img src="shots-web/phone-run.webp" alt="" width="720" height="1465"></div>
       </div>
