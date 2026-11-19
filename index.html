@@ -8,7 +8,7 @@
 <link rel="canonical" href="https://transportinsight.co.uk/">
 <meta property="og:url" content="https://transportinsight.co.uk/">
 <meta property="og:title" content="TransportInsight: the whole haulage office in one system">
-<meta property="og:description" content="Planning, drivers' phones, compliance, the workshop, invoicing and Insights for UK hauliers. Founding offer £12.50 per vehicle a month.">
+<meta property="og:description" content="Planning, drivers' phones, compliance, the workshop, invoicing and Insights for UK hauliers. Aggregates, concrete, bulk and general haulage. Prices on request.">
 <meta property="og:image" content="https://transportinsight.co.uk/share.jpg">
 <meta name="theme-color" content="#071420">
 <link rel="icon" href="favicon-64.png" type="image/png" sizes="64x64">
@@ -247,6 +247,96 @@ footer nav { display: flex; flex-wrap: wrap; gap: 10px 22px; }
 footer a { color: var(--on-dark); text-decoration: none; }
 footer a:hover { text-decoration: underline; }
 
+/* the work we're built for */
+.work { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 1060px) { .work { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .work { grid-template-columns: minmax(0, 1fr); } }
+.wk { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 22px; display: grid; gap: 10px; align-content: start; transition: transform .2s ease, box-shadow .2s ease; }
+.wk:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -28px rgba(7, 20, 32, .45); }
+.wk .ic { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: #e8f1fd; color: var(--blue); }
+.wk h3 { font-size: 18.5px; }
+.wk p { color: var(--muted); font-size: 15px; }
+.wk ul { margin: 0; padding: 0 0 0 18px; color: var(--ink); font-size: 14.5px; display: grid; gap: 4px; }
+.wk--lead { grid-column: span 2; background: var(--navy); color: var(--on-dark); border-color: var(--navy); }
+.wk--lead p { color: var(--on-dark-muted); } .wk--lead ul { color: var(--on-dark); } .wk--lead .ic { background: var(--navy-3); color: var(--yellow); }
+@media (max-width: 560px) { .wk--lead { grid-column: auto; } }
+.rates { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 15px; color: var(--muted); }
+.rates span { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 6px 13px; color: var(--ink); font-weight: 550; }
+
+/* costing demo */
+.calc { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 22px; align-items: start; }
+@media (max-width: 960px) { .calc { grid-template-columns: minmax(0, 1fr); } }
+.calc-in { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: 24px; display: grid; gap: 16px; }
+.calc-in .presets { display: flex; flex-wrap: wrap; gap: 8px; }
+.calc-in .presets button { font: inherit; font-size: 14px; font-weight: 600; padding: 8px 13px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; }
+.calc-in .presets button[aria-pressed="true"] { background: var(--navy); color: #fff; border-color: var(--navy); }
+.fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 14px; }
+@media (max-width: 420px) { .fields { grid-template-columns: minmax(0, 1fr); } }
+.fields label { display: grid; gap: 5px; font-size: 13.5px; font-weight: 600; color: var(--muted); }
+.fields input, .fields select { font: inherit; font-size: 16px; color: var(--ink); padding: 9px 11px; border: 1px solid var(--line); border-radius: 10px; background: #fff; width: 100%; min-width: 0; }
+.fields input:focus, .fields select:focus { outline: 2px solid var(--blue); outline-offset: 1px; }
+.calc-in details { font-size: 14.5px; color: var(--muted); }
+.calc-in summary { cursor: pointer; font-weight: 650; color: var(--ink); }
+.calc-in details .fields { margin-top: 12px; }
+.calc-out { background: var(--navy); color: var(--on-dark); border-radius: var(--r-lg); padding: 26px; display: grid; gap: 18px; }
+.calc-out .big { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 480px) { .calc-out .big { grid-template-columns: minmax(0, 1fr); } }
+.calc-out .big div { background: var(--navy-2); border: 1px solid rgba(255,255,255,.1); border-radius: 12px; padding: 14px; display: grid; gap: 2px; }
+.calc-out .big span { font-size: 13px; color: var(--on-dark-muted); }
+.calc-out .big b { font-size: 26px; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; color: #fff; }
+.calc-out .big b.neg { color: #ff9c90; } .calc-out .big b.pos { color: #6fe0a6; }
+.stack { display: flex; height: 18px; border-radius: 99px; overflow: hidden; background: var(--navy-3); }
+.stack i { display: block; height: 100%; transition: width .25s ease; }
+.legend { display: grid; gap: 7px; font-size: 14.5px; }
+.legend div { display: grid; grid-template-columns: 14px minmax(0, 1fr) auto; gap: 10px; align-items: center; }
+.legend i { width: 12px; height: 12px; border-radius: 3px; }
+.legend b { font-variant-numeric: tabular-nums; color: #fff; font-weight: 650; }
+.legend .tot { border-top: 1px solid rgba(255,255,255,.14); padding-top: 8px; }
+.calc-out .say { font-size: 16px; line-height: 1.5; background: rgba(43, 179, 240, .1); border: 1px solid rgba(43, 179, 240, .3); border-radius: 12px; padding: 13px 15px; }
+.calc-out .say b { color: #fff; }
+
+/* how a data point becomes a finding */
+.steps { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0; counter-reset: st; position: relative; }
+.steps::before { content: ""; position: absolute; left: 4%; right: 4%; top: 22px; height: 2px; background: linear-gradient(90deg, var(--cyan), var(--yellow)); opacity: .55; }
+.steps li { counter-increment: st; display: grid; gap: 10px; align-content: start; padding: 0 8px; position: relative; }
+.steps li::before { content: counter(st); width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-family: var(--mono);
+  background: var(--navy); border: 2px solid var(--cyan); color: #fff; position: relative; z-index: 1; }
+.steps h3 { font-size: 16.5px; color: #fff; }
+.steps p { font-size: 14px; color: var(--on-dark-muted); }
+.steps .eg { font-size: 13.5px; color: var(--on-dark); background: var(--navy-2); border: 1px solid rgba(255,255,255,.1); border-left: 3px solid var(--yellow); border-radius: 8px; padding: 9px 10px; }
+.steps .eg b { color: var(--yellow); font-weight: 650; display: block; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 2px; }
+@media (max-width: 1060px) {
+  .steps { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .steps::before { left: 21px; right: auto; top: 10px; bottom: 10px; width: 2px; height: auto; background: linear-gradient(180deg, var(--cyan), var(--yellow)); }
+  .steps li { grid-template-columns: 44px minmax(0, 1fr); column-gap: 16px; padding: 0; }
+  .steps li > * { grid-column: 2; } .steps li::before { grid-row: 1 / span 3; }
+}
+.trace-h { margin-top: 56px; display: grid; gap: 8px; }
+.trace-h h3 { color: #fff; font-size: 22px; }
+.learn { margin-top: 30px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 900px) { .learn { grid-template-columns: minmax(0, 1fr); } }
+.learn div { background: var(--navy-2); border: 1px solid rgba(255,255,255,.1); border-radius: var(--r); padding: 18px; color: var(--on-dark-muted); font-size: 15px; }
+.learn b { display: block; color: #fff; font-size: 16.5px; margin-bottom: 4px; }
+
+/* larger operators */
+.big-ops { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 960px) { .big-ops { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .big-ops { grid-template-columns: minmax(0, 1fr); } }
+.big-ops div { border: 1px solid var(--line); border-radius: var(--r); padding: 22px; background: var(--bg); display: grid; gap: 8px; align-content: start; }
+.big-ops p { color: var(--muted); font-size: 15.5px; }
+.links { margin-top: 26px; padding: 22px 24px; border-radius: var(--r); background: var(--navy); color: var(--on-dark); display: grid; gap: 14px; }
+.links h3 { color: #fff; font-size: 18px; }
+.links ol { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 900px) { .links ol { grid-template-columns: minmax(0, 1fr); } }
+.links li { background: var(--navy-2); border: 1px solid rgba(255,255,255,.1); border-radius: 12px; padding: 13px; font-size: 14.5px; color: var(--on-dark-muted); }
+.links li b { display: block; color: #fff; }
+
+/* price on request */
+.plan ul { margin: 0; padding: 0 0 0 18px; display: grid; gap: 6px; font-size: 15.5px; }
+.plan--hot ul { color: var(--on-dark); }
+.plan .acts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+.plan .acts .btn { margin-top: 0; }
+
 /* arrival */
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 .hero__text > *, .stage { animation: rise .7s cubic-bezier(.2, .7, .2, 1) both; }
@@ -261,15 +351,15 @@ footer a:hover { text-decoration: underline; }
   <div class="wrap">
     <a class="brand" href="#top"><img src="logo-mark.png" alt="" width="34" height="34">TransportInsight</a>
     <ul>
-      <li><a href="#system">One system</a></li>
+      <li><a href="#work">Your work</a></li>
       <li><a href="#planning">Planning</a></li>
+      <li><a href="#costing">Costing</a></li>
       <li><a href="#insights">Insights</a></li>
-      <li><a href="#mot">MOT plan</a></li>
-      <li><a href="#workshop">Workshop</a></li>
+      <li><a href="#operators">Larger fleets</a></li>
       <li><a href="#prices">Prices</a></li>
     </ul>
     <a class="btn btn--ghost dl" href="https://app.transportinsight.co.uk/download/windows"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0-3.2-3.2M8 10l3.2-3.2M3 13h10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Download</a>
-    <a class="btn btn--primary" href="https://app.transportinsight.co.uk/">Start a free trial</a>
+    <a class="btn btn--primary" href="mailto:sales@transportinsight.co.uk?subject=A%20demo%20of%20TransportInsight">Book a demo</a>
   </div>
 </header>
 
@@ -277,14 +367,14 @@ footer a:hover { text-decoration: underline; }
   <section class="hero" aria-labelledby="hero-h">
     <div class="wrap">
       <div class="hero__text">
-        <p class="eyebrow">Transport management software for UK hauliers</p>
+        <p class="eyebrow">Transport software for aggregates, concrete, bulk and general haulage</p>
         <h1 id="hero-h">The whole haulage office in <em>one system</em>.</h1>
         <p class="lead">Plan the day, run your drivers' phones, keep the fleet legal, fix it in your own workshop, invoice the work, and see exactly where you make and lose money. One set of figures from the quote to the invoice.</p>
         <div class="hero__acts">
-          <a class="btn btn--primary" href="https://app.transportinsight.co.uk/">Start a free trial</a>
+          <a class="btn btn--primary" href="mailto:sales@transportinsight.co.uk?subject=A%20demo%20of%20TransportInsight">Book a demo</a>
           <a class="btn btn--ghost" href="https://app.transportinsight.co.uk/#/sample">Look around a sample company</a>
         </div>
-        <p class="hero__note"><span><b>£12.50</b> per vehicle a month for the first five firms</span><span><b>First month free</b> · no contract</span><span><a href="https://app.transportinsight.co.uk/download/windows">Download for Windows</a></span></p>
+        <p class="hero__note"><span><b>Priced per vehicle</b>, every login included</span><span><b>Prices on request</b></span><span><a href="https://app.transportinsight.co.uk/download/windows">Download for Windows</a></span></p>
       </div>
       <div class="stage">
         <div class="browser" role="img" aria-label="The TransportInsight Planning board: twenty vehicles, each with its loads, empty miles, day score and day profit">
@@ -319,6 +409,30 @@ footer a:hover { text-decoration: underline; }
     </div>
   </section>
 
+
+  <section class="alt" id="work" aria-labelledby="work-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Built for the work you actually do</p>
+        <h2 id="work-h">From the quarry face to a pallet on a trading estate.</h2>
+        <p class="lead">Every kind of haulage is priced, planned and costed its own way. TransportInsight takes the rate the way your customer pays it, puts each load on a vehicle that can carry it, and tells you what that load really made.</p>
+      </div>
+      <div class="work">
+        <div class="wk wk--lead"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19h18M5 19l4-8 3 4 2-3 5 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"/><circle cx="17" cy="6" r="2" fill="currentColor"/></svg></span><h3>Aggregates and quarry products</h3>
+          <p>Short, repeated runs from quarry to site, where a few minutes at the weighbridge or the tip decide whether the day pays.</p>
+          <ul><li>Priced per tonne, per load or by the day</li><li>Many loads a day per tipper, in the best order, with the empty miles back counted</li><li>Time at the quarry and the site measured by the tracker, so waiting can be charged</li><li>Profit per load, per site and per customer, judged against the same vehicle type</li></ul></div>
+        <div class="wk"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 16V9h5l2 3h4M14 12l6-4v7l-6 1zM6 18.5a1.5 1.5 0 1 0 0 .01M17 18.5a1.5 1.5 0 1 0 0 .01" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"/></svg></span><h3>Ready-mix concrete</h3><p>Mixers on tight cycles from the plant. See which sites hold a truck too long, and what the wait costs you a month.</p></div>
+        <div class="wk"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6h12v10H2zM14 10h4l3 3v3h-7M5.5 18.5a1.5 1.5 0 1 0 0 .01M17.5 18.5a1.5 1.5 0 1 0 0 .01" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"/></svg></span><h3>General haulage</h3><p>Curtainsiders, flats and box vans. Collections and drops in one run, nights out, and where each vehicle starts tomorrow.</p></div>
+        <div class="wk"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15c0-3 3-6 9-6s9 3 9 6v1H3zM8 9V6h8v3M6.5 18.5a1.5 1.5 0 1 0 0 .01M17.5 18.5a1.5 1.5 0 1 0 0 .01" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"/></svg></span><h3>Bulk powder and tankers</h3><p>Cement, lime and fly ash. Each job's needs, such as a blower or ADR, are matched to the vehicle, trailer and driver.</p></div>
+        <div class="wk"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 16h20M4 16l2-3h7v-3l4-4 3 2-4 3v5M6 19a1.5 1.5 0 1 0 0 .01M18 19a1.5 1.5 0 1 0 0 .01" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"/></svg></span><h3>Plant and low-loaders</h3><p>Per job or by the hour, with notes and needs on every booking, and day hire for vehicles kept on site.</p></div>
+        <div class="wk"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18v10H3zM7 7v10M11 7v10M15 7v10M19 7v10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><h3>Trailers and swaps</h3><p>A trailer board, drop-and-swap at the yard or a customer, and a split load passed from one driver to the next.</p></div>
+        <div class="wk"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l3-4 3 4M17 10l3 4-5 1M8 20l-5-1 2-5M10 3l-5 9M20 14H10M3 19l7-10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/></svg></span><h3>Waste and recycling</h3><p>Skip and RORO day hire priced once for the day, however many lifts it covers.</p></div>
+        <div class="wk"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V9M12 13c-4 0-6-3-6-6 4 0 6 2 6 6zM12 11c0-4 2-7 6-7 0 4-2 7-6 7z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"/></svg></span><h3>Agricultural and seasonal</h3><p>Grain, feed and fertiliser in busy seasons, with outside hauliers taking the overflow.</p></div>
+      </div>
+      <div class="rates" aria-label="Ways a job can be priced"><b>Charge it the way your customer pays:</b><span>Per job</span><span>Per tonne</span><span>Per unit</span><span>Per mile</span><span>Per hour</span><span>Day hire</span><span>Price lists per customer</span><span>Waiting time</span><span>Fuel surcharge</span></div>
+    </div>
+  </section>
+
   <section id="planning" aria-labelledby="planning-h">
     <div class="wrap feature">
       <div class="feature__text">
@@ -333,6 +447,62 @@ footer a:hover { text-decoration: underline; }
         </ul>
       </div>
       <div class="shot" role="img" aria-label="Map view of the Planning board with one vehicle's run picked, numbered, beside its list of loads"><img src="shots-web/board-map.webp" alt="" width="1600" height="1145" loading="lazy"></div>
+    </div>
+  </section>
+
+
+  <section class="alt" id="costing" aria-labelledby="costing-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Try the costing engine</p>
+        <h2 id="costing-h">What does one load really make?</h2>
+        <p class="lead">This is a cut-down version of the sum TransportInsight does for every quote and every job. Change the figures and watch the profit move. In the app they come from your own vehicles, your pay schemes, today's fuel price and real road miles.</p>
+      </div>
+      <div class="calc" id="calc">
+        <div class="calc-in">
+          <div class="presets" role="group" aria-label="Example loads">
+            <button type="button" data-p="agg" aria-pressed="true">Quarry to site</button>
+            <button type="button" data-p="mix">Ready-mix</button>
+            <button type="button" data-p="gen">General haulage</button>
+            <button type="button" data-p="bulk">Bulk powder</button>
+          </div>
+          <div class="fields">
+            <label>Charged<select id="c-type"><option value="t">Per tonne</option><option value="l">Per load</option></select></label>
+            <label><span id="c-rate-l">Rate (£ a tonne)</span><input id="c-rate" type="number" step="0.01" min="0" inputmode="decimal"></label>
+            <label>Tonnes carried<input id="c-tonnes" type="number" step="0.5" min="0" inputmode="decimal"></label>
+            <label>Hours, door to door<input id="c-hours" type="number" step="0.25" min="0" inputmode="decimal"></label>
+            <label>Loaded miles<input id="c-miles" type="number" step="1" min="0" inputmode="numeric"></label>
+            <label>Empty miles (back or to the next load)<input id="c-empty" type="number" step="1" min="0" inputmode="numeric"></label>
+          </div>
+          <details>
+            <summary>The vehicle and driver costs</summary>
+            <div class="fields">
+              <label>Miles per gallon<input id="c-mpg" type="number" step="0.1" min="1" inputmode="decimal"></label>
+              <label>Diesel (£ a litre, no VAT)<input id="c-fuel" type="number" step="0.01" min="0" inputmode="decimal"></label>
+              <label>Maintenance and tyres (pence a mile)<input id="c-wear" type="number" step="1" min="0" inputmode="numeric"></label>
+              <label>Fixed costs (£ a day: finance, insurance, VED, O-licence)<input id="c-fixed" type="number" step="1" min="0" inputmode="numeric"></label>
+              <label>Driver (£ an hour, with NI and pension)<input id="c-pay" type="number" step="0.1" min="0" inputmode="decimal"></label>
+              <label>Working day (hours)<input id="c-day" type="number" step="0.5" min="1" inputmode="decimal"></label>
+            </div>
+          </details>
+        </div>
+        <div class="calc-out" aria-live="polite">
+          <div class="big">
+            <div><span>The customer pays</span><b id="o-rev">£0</b></div>
+            <div><span>It costs you</span><b id="o-cost">£0</b></div>
+            <div><span>Profit</span><b id="o-profit">£0</b></div>
+          </div>
+          <div class="stack" aria-hidden="true"><i id="s-fuel" style="background:#2bb3f0"></i><i id="s-wear" style="background:#7d8ea3"></i><i id="s-fixed" style="background:#4f7cff"></i><i id="s-pay" style="background:#f2b705"></i><i id="s-prof" style="background:#3ccf86"></i></div>
+          <div class="legend">
+            <div><i style="background:#2bb3f0"></i><span>Fuel</span><b id="l-fuel"></b></div>
+            <div><i style="background:#7d8ea3"></i><span>Maintenance and tyres</span><b id="l-wear"></b></div>
+            <div><i style="background:#4f7cff"></i><span>Its share of the day's fixed costs</span><b id="l-fixed"></b></div>
+            <div><i style="background:#f2b705"></i><span>Driver</span><b id="l-pay"></b></div>
+            <div class="tot"><i></i><span>Of the costs, the empty miles</span><b id="l-empty"></b></div>
+          </div>
+          <p class="say" id="o-say"></p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -361,14 +531,33 @@ footer a:hover { text-decoration: underline; }
         <div class="join" aria-hidden="true"><svg width="36" height="20" viewBox="0 0 36 20"><path d="M2 10h30m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div class="f-col">
           <h3>What comes out</h3><p class="sub">Findings in plain English, biggest first</p>
-          <div class="finding"><span class="tag">Strong evidence</span><b>Vehicles finish at Wigan Landfill and drive home empty 684 times</b><span class="gbp">about £10,439 a quarter</span><span class="do"><strong>What to do</strong>Plan a return load from there: you already collect 12 miles away.</span></div>
-          <div class="finding"><span class="tag">Strong evidence</span><b>One customer makes 139p a mile less profit than the same kind of work</b><span class="do"><strong>What to do</strong>Charge for the miles back, or find a backload.</span></div>
+          <div class="finding"><span class="tag">Strong evidence</span><b>Tippers wait 35 minutes longer at one building site than at your others</b><span class="gbp">about £5,900 a quarter</span><span class="do"><strong>What to do</strong>Charge waiting after 30 minutes, or book tipping slots.</span></div>
+          <div class="finding"><span class="tag">Strong evidence</span><b>Loads into one town come back empty 9 times in 10</b><span class="gbp">about £3,100 a month</span><span class="do"><strong>What to do</strong>You already collect from a quarry 8 miles away: plan it as the backload.</span></div>
         </div>
       </div>
       <div class="notai">
         <div><b>Not an AI guessing</b>Every finding comes from set calculations on your own figures, so the same data always gives the same answer.</div>
         <div><b>It says how sure it is</b>Strong evidence, or worth watching. A weak pattern is never stated as fact.</div>
         <div><b>Every finding shows its working</b>Open it to see the jobs, bills and days behind it, and check them yourself.</div>
+      </div>
+
+      <div class="trace-h">
+        <p class="eyebrow">How a data point becomes a finding</p>
+        <h3>One example, followed through all six steps.</h3>
+        <p class="lead">A tipper carries 20 tonnes from a quarry to a housing site, and does the same run most days.</p>
+      </div>
+      <ol class="steps">
+        <li><h3>Collect</h3><p>Records arrive from every part of the system, and from your tracker, fuel cards and payroll.</p><p class="eg"><b>Example</b>The job at £6.50 a tonne. The tracker: in at 07:12, out at 08:05.</p></li>
+        <li><h3>Match</h3><p>Each record is pinned to the load it belongs to: the site visit, the vehicle's fuel that month, the driver's pay that day.</p><p class="eg"><b>Example</b>The 53-minute stop sits inside the site's boundary, so it's this load's tip.</p></li>
+        <li><h3>Real cost</h3><p>The quoted cost is set beside what the load really cost, with its share of the empty miles.</p><p class="eg"><b>Example</b>Quoted at £71. It really cost £84, mostly in waiting.</p></li>
+        <li><h3>Like for like</h3><p>It's compared only with work of the same kind: the same vehicle type, a similar distance, the same kind of day.</p><p class="eg"><b>Example</b>Your other sites hold a tipper for 18 minutes on average.</p></li>
+        <li><h3>Rule out luck</h3><p>The pattern has to hold across many days, and the bar rises with the number of checks run, so chance doesn't produce a finding.</p><p class="eg"><b>Example</b>212 visits over six months. The gap holds across them.</p></li>
+        <li><h3>Say it plainly</h3><p>It's written up in plain English, with the pounds, how sure it is, what to do, and the records behind it.</p><p class="eg"><b>Example</b>"35 minutes longer, about £5,900 a quarter. Charge waiting after 30 minutes."</p></li>
+      </ol>
+      <div class="learn">
+        <div><b>It learns your roads</b>The tracker shows how long each kind of run really takes, and quotes and plans use it from then on.</div>
+        <div><b>It learns your sites</b>Every site's real time to load or tip is learnt from its visits, so a slow site is planned as a slow site.</div>
+        <div><b>It learns your vehicles</b>Engine data shows what each vehicle burns loaded and empty, so the empty miles are costed at their real price.</div>
       </div>
       <div class="shot" role="img" aria-label="The Insights screen: 107 findings, real margin 15%, empty running 43%, and the biggest findings with what to do"><img src="shots-web/insights.webp" alt="" width="1600" height="1157" loading="lazy"></div>
     </div>
@@ -426,7 +615,35 @@ footer a:hover { text-decoration: underline; }
     </div>
   </section>
 
-  <section id="compare" aria-labelledby="compare-h">
+
+  <section id="operators" aria-labelledby="ops-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">For larger operators</p>
+        <h2 id="ops-h">Many sites, your own fleet and outside hauliers, all on one plan.</h2>
+        <p class="lead">For a business where transport supports the product, not the other way round, TransportInsight keeps every wagon on the road (yours, hired in or a haulier's) costed, legal and accounted for.</p>
+      </div>
+      <div class="big-ops">
+        <div><h3>Outside hauliers and owner-drivers</h3><p>Hired-in wagons go on the same board, paid by the day, the load or a percentage. Give a load to a haulier and their day sheet emails itself, without your customer's name or rate.</p></div>
+        <div><h3>Carbon on every load</h3><p>CO2e per load, customer, vehicle and month, from each load's fuel and the UK Government's conversion factors. HVO is counted as HVO.</p></div>
+        <div><h3>Tachograph, read in-house</h3><p>Driver cards and vehicle units read straight from the download files. Signatures are checked, and every infringement is pinned on a 24-hour day.</p></div>
+        <div><h3>Who sees what</h3><p>Planners, the workshop, accounts and site staff each see only their sections, enforced by the server. Each company's data is fenced off at the database.</p></div>
+        <div><h3>Sections and groups</h3><p>Split the fleet by depot, site or region. Each has its own tab on the board, its own figures in Insights, and compliance in one place.</p></div>
+        <div><h3>A pilot first</h3><p>Start with one area and your own history imported, then measure empty miles, waiting and cost per tonne against how it was before.</p></div>
+      </div>
+      <div class="links">
+        <h3>Works beside the systems you already run</h3>
+        <ol>
+          <li><b>Files</b>Nightly CSV or Excel drops, read by the same column matching the import uses.</li>
+          <li><b>Feeds we fetch</b>Volvo Connect and tracker feeds, pulled every few minutes.</li>
+          <li><b>Feeds you send</b>A documented address your systems can push records to.</li>
+          <li><b>Back out</b>Costed loads, compliance and invoices to Sage 50 or as files, with Xero next.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="compare" aria-labelledby="compare-h">
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow">How it compares</p>
@@ -450,7 +667,7 @@ footer a:hover { text-decoration: underline; }
     </div>
   </section>
 
-  <section class="alt" id="cost" aria-labelledby="cost-h">
+  <section id="cost" aria-labelledby="cost-h">
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow">What it costs to piece together</p>
@@ -474,12 +691,8 @@ footer a:hover { text-decoration: underline; }
           </table>
         </div>
         <div class="cost-sum" aria-label="The same firm on TransportInsight">
-          <div class="bars" aria-hidden="true">
-            <div class="bar"><span class="lbl">Separate</span><span class="fill sep" style="--w:100%"></span><b>£566–£768</b></div>
-            <div class="bar"><span class="lbl">TransportInsight</span><span class="fill ti" style="--w:33%"></span><b>£250</b></div>
-            <div class="bar"><span class="lbl">Founding offer</span><span class="fill fo" style="--w:16%"></span><b>£125</b></div>
-          </div>
-          <p class="save">Everything above, plus the MOT plan and Insights, for <b>£250 a month</b> (10 vehicles at £25). That saves about <b>£316–£518 a month</b>, or <b>£3,800–£6,200 a year</b>, and there's one login, one bill and one set of figures.</p>
+          <p class="save">TransportInsight does <b>everything above</b>, plus the MOT plan and Insights, in <b>one subscription priced per vehicle</b>. That's one login, one bill and one set of figures, with no data typed twice between systems.</p>
+          <a class="btn btn--primary" href="mailto:sales@transportinsight.co.uk?subject=A%20price%20for%20my%20fleet" style="justify-self:start">Ask for a price for your fleet</a>
           <p class="fine">Typical prices published by UK suppliers of each kind of software, November 2026, excluding VAT. Your quotes may differ with contracts and fleet size. Vehicle tracking hardware isn't included on either side.</p>
         </div>
       </div>
@@ -491,25 +704,27 @@ footer a:hover { text-decoration: underline; }
       <div class="sec-head">
         <p class="eyebrow">Prices</p>
         <h2 id="prices-h">One price per vehicle. Bring the whole office.</h2>
-        <p class="lead">Every office login, every driver and every mechanic is included. Five vehicles on the founding offer is £62.50 a month.</p>
+        <p class="lead">Every office login, every driver and every mechanic is included. Prices are on request: tell us about your fleet and we'll come back with a figure.</p>
       </div>
       <div class="price-grid">
         <div class="plan plan--hot">
-          <span class="kicker">Founding offer · the first five firms</span>
-          <div class="amount">£12.50 <small>per vehicle a month</small></div>
-          <p>Kept for as long as you stay, in return for telling us what works and what doesn't. First month free, no contract.</p>
-          <a class="btn btn--primary" href="mailto:sales@transportinsight.co.uk?subject=A%20founding%20place">Ask for a founding place</a>
+          <span class="kicker">Hauliers and fleets</span>
+          <div class="amount">On request</div>
+          <p>One monthly price per vehicle, with everything included and nothing charged per user.</p>
+          <ul><li>Your history imported from Mandata or a spreadsheet</li><li>Set up with you: vehicles, costs, customers and price lists</li><li>No long contract</li></ul>
+          <div class="acts"><a class="btn btn--primary" href="mailto:sales@transportinsight.co.uk?subject=A%20price%20for%20my%20fleet">Ask for a price</a><a class="btn btn--ghost" href="mailto:sales@transportinsight.co.uk?subject=A%20demo%20of%20TransportInsight">Book a demo</a></div>
         </div>
         <div class="plan">
-          <span class="kicker">After the first five</span>
-          <div class="amount">£25 <small>per vehicle a month</small></div>
-          <p>Everything included, nothing per user. First month free, no contract.</p>
-          <a class="btn btn--light" href="https://app.transportinsight.co.uk/#/sample">Look around a sample company</a>
+          <span class="kicker">Larger operators and groups</span>
+          <div class="amount">Let's talk</div>
+          <p>Many sites, outside hauliers, your own systems to link to. We'll scope it with you and start with a pilot in one area.</p>
+          <ul><li>Links to the systems you already run</li><li>A pilot measured against how it was before</li><li>Rolled out area by area</li></ul>
+          <div class="acts"><a class="btn btn--light" href="mailto:sales@transportinsight.co.uk?subject=TransportInsight%20for%20a%20larger%20operation">Arrange a call</a></div>
         </div>
       </div>
       <div class="included" aria-label="Included for every company">
         <span>Route Builder and price lists</span><span>Planning board and Optimise day</span><span>Driver and mechanic phone apps</span><span>Compliance and the MOT plan</span>
-        <span>The workshop</span><span>Staff files and holidays</span><span>Invoicing and Sage 50</span><span>Insights</span><span>Volvo Connect and tracker links</span><span>The Windows app</span>
+        <span>The workshop</span><span>Staff files and holidays</span><span>Invoicing and Sage 50</span><span>Carbon per load</span><span>Tachograph reading</span><span>Insights</span><span>Volvo Connect and tracker links</span><span>The Windows app</span>
       </div>
     </div>
   </section>
@@ -540,6 +755,8 @@ footer a:hover { text-decoration: underline; }
         <div><h3>Does it export to Sage 50?</h3><p>Yes: invoices, credit notes and payments, with haulage and workshop each to its own nominal code.</p></div>
         <div><h3>Does it suit a one-man band?</h3><p>Yes. Switch on one-man band and your office login is also the driver, with the phone screens inside the app.</p></div>
         <div><h3>Can a planner see the company's money?</h3><p>Only if you tick it. Each login sees just the sections you give it, and a change takes effect on their next click.</p></div>
+        <div><h3>How much does it cost?</h3><p>One price per vehicle a month, with every login included. Prices are on request, so ask us and we'll give you a figure for your fleet.</p></div>
+        <div><h3>Can it price per tonne?</h3><p>Yes, and per load, unit, mile, hour or day, with a price list per customer. Waiting time and a fuel surcharge can be added on.</p></div>
         <div><h3>Where is my data kept?</h3><p>In the UK, on servers in London. Each company's data is kept apart from every other's, and you can download all of it at any time.</p></div>
       </div>
     </div>
@@ -547,9 +764,9 @@ footer a:hover { text-decoration: underline; }
 
   <section class="closing" aria-labelledby="close-h">
     <div class="wrap">
-      <h2 id="close-h">Plan tomorrow on TransportInsight.</h2>
-      <p class="lead">Try it on your own vehicles and customers. First month free.</p>
-      <div class="hero__acts"><a class="btn btn--primary" href="https://app.transportinsight.co.uk/">Start a free trial</a><a class="btn btn--ghost" href="mailto:hello@transportinsight.co.uk">hello@transportinsight.co.uk</a></div>
+      <h2 id="close-h">See it on your own loads.</h2>
+      <p class="lead">Send us a week of your work and we'll show you what each load really made.</p>
+      <div class="hero__acts"><a class="btn btn--primary" href="mailto:sales@transportinsight.co.uk?subject=A%20demo%20of%20TransportInsight">Book a demo</a><a class="btn btn--ghost" href="mailto:hello@transportinsight.co.uk">hello@transportinsight.co.uk</a></div>
     </div>
   </section>
 </main>
@@ -567,5 +784,51 @@ footer a:hover { text-decoration: underline; }
     <span>© 2026 TransportInsight</span>
   </div>
 </footer>
+<script>
+(function () {
+  var P = {
+    agg:  { type: 't', rate: 6.5, tonnes: 20, hours: 2, miles: 22, empty: 22, mpg: 7.5, fuel: 1.18, wear: 19, fixed: 155, pay: 19, day: 10 },
+    mix:  { type: 'l', rate: 145, tonnes: 18, hours: 2.25, miles: 14, empty: 14, mpg: 6.5, fuel: 1.18, wear: 21, fixed: 165, pay: 19, day: 10 },
+    gen:  { type: 'l', rate: 520, tonnes: 24, hours: 7.5, miles: 210, empty: 60, mpg: 9, fuel: 1.18, wear: 14, fixed: 170, pay: 18, day: 11 },
+    bulk: { type: 't', rate: 16, tonnes: 29, hours: 6, miles: 120, empty: 120, mpg: 8.5, fuel: 1.18, wear: 17, fixed: 180, pay: 19.5, day: 11 }
+  };
+  var F = ['type','rate','tonnes','hours','miles','empty','mpg','fuel','wear','fixed','pay','day'];
+  var $ = function (id) { return document.getElementById(id); };
+  var gbp = function (p) { var n = Math.round(p); return (n < 0 ? '-£' : '£') + Math.abs(n).toLocaleString('en-GB'); };
+  var num = function (id) { var v = parseFloat($('c-' + id).value); return isFinite(v) && v > 0 ? v : 0; };
+  function load(k) {
+    var p = P[k]; F.forEach(function (f) { $('c-' + f).value = p[f]; });
+    document.querySelectorAll('#calc .presets button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.p === k ? 'true' : 'false'); });
+    run();
+  }
+  function run() {
+    var perT = $('c-type').value === 't';
+    $('c-rate-l').textContent = perT ? 'Rate (£ a tonne)' : 'Rate (£ a load)';
+    var t = num('tonnes'), miles = num('miles'), empty = num('empty'), all = miles + empty;
+    var rev = perT ? num('rate') * t : num('rate');
+    var litres = num('mpg') ? all / num('mpg') * 4.546 : 0;
+    var fuel = litres * num('fuel');
+    var wear = all * num('wear') / 100;
+    var fixed = num('day') ? num('fixed') * Math.min(1, num('hours') / num('day')) : 0;
+    var pay = num('hours') * num('pay');
+    var cost = fuel + wear + fixed + pay, profit = rev - cost;
+    var emptyCost = all ? (fuel + wear) * empty / all : 0;
+    $('o-rev').textContent = gbp(rev); $('o-cost').textContent = gbp(cost);
+    var o = $('o-profit'); o.textContent = gbp(profit); o.className = profit < 0 ? 'neg' : 'pos';
+    $('l-fuel').textContent = gbp(fuel); $('l-wear').textContent = gbp(wear); $('l-fixed').textContent = gbp(fixed); $('l-pay').textContent = gbp(pay);
+    $('l-empty').textContent = gbp(emptyCost);
+    var base = Math.max(rev, cost) || 1;
+    [['fuel', fuel], ['wear', wear], ['fixed', fixed], ['pay', pay], ['prof', Math.max(0, profit)]].forEach(function (x) { $('s-' + x[0]).style.width = (x[1] / base * 100) + '%'; });
+    var margin = rev ? Math.round(profit / rev * 100) : 0;
+    var be = perT && t ? '£' + (cost / t).toFixed(2) + ' a tonne' : gbp(cost) + ' a load';
+    var back = perT && t ? ' With a backload instead of the empty miles, the break-even falls to <b>£' + ((cost - emptyCost) / t).toFixed(2) + ' a tonne</b>.'
+                         : ' With a backload instead of the empty miles, it would cost <b>' + gbp(cost - emptyCost) + '</b>.';
+    $('o-say').innerHTML = (rev ? 'A margin of <b>' + margin + '%</b>. ' : '') + 'This load breaks even at <b>' + be + '</b>.' + (empty ? back : '');
+  }
+  document.querySelectorAll('#calc .presets button').forEach(function (b) { b.addEventListener('click', function () { load(b.dataset.p); }); });
+  document.querySelectorAll('#calc input, #calc select').forEach(function (i) { i.addEventListener('input', run); });
+  load('agg');
+})();
+</script>
 </body>
 </html>
